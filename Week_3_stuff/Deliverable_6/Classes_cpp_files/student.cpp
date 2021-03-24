@@ -1,4 +1,4 @@
-#include "Classes_headers/student.h"
+#include "../Classes_headers/student.h"
 
 /****************************************************************
  * student.h

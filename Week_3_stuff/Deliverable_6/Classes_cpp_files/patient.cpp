@@ -1,4 +1,4 @@
-#include "Classes_headers/patient.h"
+#include "../Classes_headers/patient.h"
 
 /****************************************************************
  * patient.h

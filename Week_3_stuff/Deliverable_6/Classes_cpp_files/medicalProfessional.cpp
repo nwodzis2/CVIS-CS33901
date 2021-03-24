@@ -1,4 +1,4 @@
-#include "Classes_headers/medicalProfessional.h"
+#include "../Classes_headers/medicalProfessional.h"
 
 /****************************************************************
  * medicalProfessional.h

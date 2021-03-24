@@ -4914,7 +4914,7 @@
 								"$ref": "AAAAAAF4NsxncdWkZ2E="
 							},
 							"name": "int",
-							"type": "appointmentID"
+							"type": "aID"
 						},
 						{
 							"_type": "UMLAttribute",
@@ -16315,7 +16315,7 @@
 											"top": 755,
 											"width": 178.6357421875,
 											"height": 13,
-											"text": "+int: appointmentID",
+											"text": "+int: aID",
 											"horizontalAlignment": 0
 										},
 										{
