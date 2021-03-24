@@ -1,5 +1,5 @@
-#include "Classes_headers/employee.h"
+#include "Classes_headers/payment.h"
 
 /****************************************************************
- * appointment.h
+ * payment.h
  * **************************************************************/

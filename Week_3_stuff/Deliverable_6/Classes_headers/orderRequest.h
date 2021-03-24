@@ -1,12 +1,12 @@
-#ifndef appointment_h
-#define appointment_h
+#ifndef orderRequest_h
+#define orderRequest_h
 
 /****************************************************************
- * Class definition : Appointment
+ * Class definition : orderRequest
  * @author Jaden Kandel, Steven Strange, Nathan Woodzisz
  * **************************************************************/
 
-class Appointment {
+class orderRequest {
 
 public:
 

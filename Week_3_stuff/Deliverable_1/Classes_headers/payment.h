@@ -1,12 +1,12 @@
-#ifndef appointment_h
-#define appointment_h
+#ifndef payment_h
+#define payment_h
 
 /****************************************************************
- * Class definition : Appointment
+ * Class definition : payment
  * @author Jaden Kandel, Steven Strange, Nathan Woodzisz
  * **************************************************************/
 
-class Appointment {
+class Payment {
 
 public:
 

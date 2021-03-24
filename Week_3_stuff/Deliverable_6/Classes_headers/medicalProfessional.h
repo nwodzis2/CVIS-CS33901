@@ -1,12 +1,12 @@
-#ifndef appointment_h
-#define appointment_h
+#ifndef medicalProfessional_h
+#define medicalProfessional_h
 
 /****************************************************************
- * Class definition : Appointment
+ * Class definition : medicalProfessional
  * @author Jaden Kandel, Steven Strange, Nathan Woodzisz
  * **************************************************************/
 
-class Appointment {
+class medicalProfessional {
 
 public:
 

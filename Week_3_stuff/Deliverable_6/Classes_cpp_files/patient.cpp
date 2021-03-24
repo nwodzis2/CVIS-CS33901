@@ -1,5 +1,5 @@
-#include "Classes_headers/appointment.h"
+#include "Classes_headers/patient.h"
 
 /****************************************************************
- * appointment.h
+ * patient.h
  * **************************************************************/
