@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['dose_48',['Dose',['../class_dose.html',1,'']]]
+  ['dose_52',['Dose',['../class_dose.html',1,'']]]
 ];

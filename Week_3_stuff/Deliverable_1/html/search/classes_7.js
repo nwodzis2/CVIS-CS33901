@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['vaccinated_54',['Vaccinated',['../class_vaccinated.html',1,'']]],
-  ['vaccine_55',['Vaccine',['../class_vaccine.html',1,'']]]
+  ['orderrequest_56',['orderRequest',['../classorder_request.html',1,'']]]
 ];
