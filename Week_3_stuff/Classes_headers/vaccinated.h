@@ -1,12 +1,12 @@
-#ifndef appointment_h
-#define appointment_h
+#ifndef vaccinated_h
+#define vaccinated_h
 
 /****************************************************************
- * Class definition : Appointment
+ * Class definition : Vaccinated
  * @author Jaden Kandel, Steven Strange, Nathan Woodzisz
  * **************************************************************/
 
-class Appointment {
+class Vaccinated {
 
 public:
 

@@ -1,12 +1,12 @@
-#ifndef appointment_h
-#define appointment_h
+#ifndef stations_h
+#define stations_h
 
 /****************************************************************
- * Class definition : Appointment
+ * Class definition : Stations
  * @author Jaden Kandel, Steven Strange, Nathan Woodzisz
  * **************************************************************/
 
-class Appointment {
+class Stations {
 
 public:
 

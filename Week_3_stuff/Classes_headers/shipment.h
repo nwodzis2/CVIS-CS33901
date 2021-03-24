@@ -1,12 +1,12 @@
-#ifndef appointment_h
-#define appointment_h
+#ifndef shipment_h
+#define shipment_h
 
 /****************************************************************
- * Class definition : Appointment
+ * Class definition : Shipment
  * @author Jaden Kandel, Steven Strange, Nathan Woodzisz
  * **************************************************************/
 
-class Appointment {
+class Shipment {
 
 public:
 

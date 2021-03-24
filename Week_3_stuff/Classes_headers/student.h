@@ -1,12 +1,12 @@
-#ifndef appointment_h
-#define appointment_h
+#ifndef student_h
+#define student_h
 
 /****************************************************************
- * Class definition : Appointment
+ * Class definition : Student
  * @author Jaden Kandel, Steven Strange, Nathan Woodzisz
  * **************************************************************/
 
-class Appointment {
+class Student {
 
 public:
 
