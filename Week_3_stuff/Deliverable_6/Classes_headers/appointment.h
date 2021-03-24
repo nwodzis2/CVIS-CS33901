@@ -3,6 +3,11 @@
 
 #include<string>
 using std::string;
+#include"Classes_headers/patient.h"
+#include"Classes_headers/stations.h"
+#include"Classes_headers/dose.h"
+#include"Classes_headers/medicalProfessional.h"
+
 /****************************************************************
  * Class definition : Appointment
  * @author Jaden Kandel, Steven Strange, Nathan Woodzisz

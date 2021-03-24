@@ -3,3 +3,12 @@
 /****************************************************************
  * balance.h
  * **************************************************************/
+double Balance::getBalance(){
+    return 0;
+}
+void Balance::increaseBalance(){
+
+}
+void Balance::decreaseBalance(){
+
+}
