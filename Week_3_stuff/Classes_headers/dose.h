@@ -1,12 +1,12 @@
-#ifndef appointment_h
-#define appointment_h
+#ifndef dose_h
+#define dose_h
 
 /****************************************************************
- * Class definition : Appointment
+ * Class definition : dose
  * @author Jaden Kandel, Steven Strange, Nathan Woodzisz
  * **************************************************************/
 
-class Appointment {
+class Dose {
 
 public:
 
