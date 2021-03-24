@@ -1,12 +1,12 @@
-#ifndef appointment_h
-#define appointment_h
+#ifndef batch_h
+#define batch_h
 
 /****************************************************************
- * Class definition : Appointment
+ * Class definition : batch
  * @author Jaden Kandel, Steven Strange, Nathan Woodzisz
  * **************************************************************/
 
-class Appointment {
+class Batch {
 
 public:
 

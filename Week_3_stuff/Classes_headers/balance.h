@@ -1,12 +1,12 @@
-#ifndef appointment_h
-#define appointment_h
+#ifndef balance_h
+#define balance_h
 
 /****************************************************************
- * Class definition : Appointment
+ * Class definition : balance
  * @author Jaden Kandel, Steven Strange, Nathan Woodzisz
  * **************************************************************/
 
-class Appointment {
+class Balance {
 
 public:
 

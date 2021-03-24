@@ -1,12 +1,12 @@
-#ifndef appointment_h
-#define appointment_h
+#ifndef employee_h
+#define employee_h
 
 /****************************************************************
- * Class definition : Appointment
+ * Class definition : employee
  * @author Jaden Kandel, Steven Strange, Nathan Woodzisz
  * **************************************************************/
 
-class Appointment {
+class Employee {
 
 public:
 
