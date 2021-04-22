@@ -1,0 +1,21 @@
+CREATE TABLE `VerifiedEmails` (
+	`email` VARCHAR(64),
+	PRIMARY KEY (`email`)
+);
+
+INSERT INTO VerifiedEmails VALUES ('ccasper3@kent.edu');
+INSERT INTO VerifiedEmails VALUES ('dearley2@kent.edu');
+INSERT INTO VerifiedEmails VALUES ('aguercio@kent.edu');
+INSERT INTO VerifiedEmails VALUES ('jkandel4@kent.edu');
+INSERT INTO VerifiedEmails VALUES ('jlee131@kent.edu');
+INSERT INTO VerifiedEmails VALUES ('kmill227@kent.edu');
+INSERT INTO VerifiedEmails VALUES ('rsilvey2@kent.edu');
+INSERT INTO VerifiedEmails VALUES ('csmit292@kent.edu');
+INSERT INTO VerifiedEmails VALUES ('sstrange@kent.edu');
+INSERT INTO VerifiedEmails VALUES ('ateleric@kent.edu');
+INSERT INTO VerifiedEmails VALUES ('tvander5@kent.edu');
+INSERT INTO VerifiedEmails VALUES ('kbloch@kent.edu');
+INSERT INTO VerifiedEmails VALUES ('swellin4@kent.edu');
+INSERT INTO VerifiedEmails VALUES ('nwodzis2@kent.edu');
+INSERT INTO VerifiedEmails VALUES ('awolff6@kent.edu');
+
