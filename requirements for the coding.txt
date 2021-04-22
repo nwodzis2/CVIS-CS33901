@@ -1,0 +1,53 @@
+Notes:
+-One vaccination station for each of the 8 campuses
+-Only KSU Students/Employees
+-KSU patients book a time at any campus at an available time
+	-keep track of:
+	1. Patient info
+	2. vaccine brand injected
+	3. dose rec
+	4. date rec for each dose
+-system keeps track of number of vaccine doses that are available at each campus
+-system orders more vaccines as a station gets low... idk just come up with a %
+-4 days min to get more vaccines...idk what system we have here.. maybe tell them we'll call them or something idk
+-asks user to reschedule if no doses available
+-each regional campus has 50 doses at a time, the main one has 150 and then it says this and makes NO sense... idk we gotta ask her
+====================================================
+KSU-HS has just received a batch of 500 doses and has distributed them across
+the campuses in this way: 50 doses to each regional campus and 150 (3 times as
+the regional campus) to the Kent campus. Due to the vaccine shortage, each
+campus can order new vaccines only when the number of vaccine doses 
+available at the station is below 50 for the regional campuses and 150 for the
+Kent campus.
+===================================================
+-The order request can be as large as desired, but the fulfillment is
+not guaranteed and it will be fulfilled with the number of doses that is less than
+or equal to the order request, depending on availability and distribution criteria
+used by the pharmaceutical company.
+-Each station can deliver up to 50 vaccine doses per day. 
+-A vaccination appointment consists of 10 minutes session between 8:00am and 18:00pm, Monday through Friday. (12 hours a day)
+-when appointments are needed, send a flashalert (if doses way higher than appointments that day)
+-For each visit KSU-HS receives a payment of $120 from the insurance company
+-if the KSU-HS patient has insurance but spends $20 for the vaccine cost if the KSU_HS patient has no insurance.
+-The CVIS permits to set up appointments, prepares the schedule of the booked vaccination appointments, prints the schedule of the vaccinations performed in the entire day/week/month/semester ( a semester is 16 weeks so we do until the end of this one :) )
+-compute amount of money the office has earned or spent in total per semester with the plan
+-dont allow for more than 2 doses
+-allow for rescheduling, appointment cancelling
+-a calandar example or the example shown by the thing (dates and users on that time)
+-visualize total number of patients who got the vaccine using KSU-HS at each campus, and in total,  together with the payments received anywhere at KSU as well as at each station/campus.
+===========================
+SAMPLE OUTPUT
+===========================
+Office: HSU-HS
+System: CVIS
+Service: February 24th schedule
+Day 1
+Date: Feb 24, 2021
+***GRAPH WITH EACH CAMPUS AND TIME, need to use pagination or make a very long page***
+==========================
+TURN IN DETAILS:
+==========================
+A folder for the project documentation
+• A Trello poster board
+• Git&Github for collaboration
+• Any other Software of your choice for requirement collection, SW Analysis & Design, and SW development (ex. StarUML, Lucidchart, Visio,etc..)
