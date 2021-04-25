@@ -19,3 +19,17 @@ INSERT INTO VerifiedEmails VALUES ('swellin4@kent.edu');
 INSERT INTO VerifiedEmails VALUES ('nwodzis2@kent.edu');
 INSERT INTO VerifiedEmails VALUES ('awolff6@kent.edu');
 
+CREATE TABLE `Appointments` (
+	`appointment_id` INT(32) NOT NULL AUTO_INCREMENT,
+    `first` VARCHAR(64),
+    `last` VARCHAR(64),
+	`user_email` VARCHAR(64),
+	`campus` VARCHAR(64),
+	`day` VARCHAR(16),
+	`month` VARCHAR(16),
+	`time_of` VARCHAR(16),
+	`completed` INT(2),
+	`vaccine_giver` VARCHAR(64),
+	PRIMARY KEY (`appointment_id`)
+);
+
