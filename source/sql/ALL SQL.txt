@@ -33,3 +33,12 @@ CREATE TABLE `Appointments` (
 	PRIMARY KEY (`appointment_id`)
 );
 
+CREATE TABLE `PatientDetails` (
+	`user_email` VARCHAR(64),
+	`has_insurance` INT(2),
+	`dose_1` VARCHAR(32),
+	`dose_1_date` VARCHAR(32),
+	`dose_2` VARCHAR(32),
+	`dose_2_date` VARCHAR(32),
+	PRIMARY KEY (`user_email`)
+);
