@@ -42,3 +42,10 @@ CREATE TABLE `PatientDetails` (
 	`dose_2_date` VARCHAR(32),
 	PRIMARY KEY (`user_email`)
 );
+
+CREATE TABLE `Users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  `user_email` varchar(64) NOT NULL,
+  `user_password` varchar(64) NOT NULL
+);
+
