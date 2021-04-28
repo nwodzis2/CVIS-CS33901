@@ -87,7 +87,21 @@ function create_new_user($connection, $email, $password, $pass_check){
         echo "This email is already in use";
     }   
 }
+function remove_user($connection, $email, $password){ //function created by Nathan Wodzisz, contact w/ q's
+    if(check_if_email_used($connection, $email)){
+            $sql = "DELETE FROM users WHERE user_email = $email AND user_password = $password";
+
+            $stmt = $connection->prepare($sql);
+
+            $stmt->execute();
+
+            echo "The user: $email has been deleted!";
+    }
+    else{
+        echo "This email is NOT in use";
+    }   
+}
 //creates new user from the form... mess around with it if u wanna bug hunt
 create_new_user($connection, $email, $password, $pass_check);
-
+//remove_user($connection, $email, $password);
 ?>
