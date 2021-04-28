@@ -42,10 +42,28 @@ CREATE TABLE `PatientDetails` (
 	`dose_2_date` VARCHAR(32),
 	PRIMARY KEY (`user_email`)
 );
-
-CREATE TABLE `Users` (
-  `id` int(11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-  `user_email` varchar(64) NOT NULL,
-  `user_password` varchar(64) NOT NULL
+CREATE TABLE `Campus` (
+	'campus_id' INT(32),
+	'campus_name' VARCHAR(64),
+	'vaccinated' INT(32),
+	'revenue' INT(32),
+	'regional' INT(2),
+	'doses_on_hand' INT(32),
+	PRIMARY KEY ('campus_name')
 );
+CREATE TABLE `sessions` ( //Created by Nathan Wodzisz message with questions
+  `session_id` varchar(32) COLLATE utf8_unicode_ci NOT NULL,
+  `expires_at` int(11) NOT NULL,
+  `session_data` text COLLATE utf8_unicode_ci NOT NULL,
+  UNIQUE KEY `session_id` (`session_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+CREATE TABLE `campus` ( //Created by Nathan Wodzisz message with questions
+	campus_name VARCHAR(64),
+	campus_id INT(32),
+	vaccinated INT(32),
+	revenue INT(32),
+	regional INT(2),
+	doses_on_hand INT(32),
+	PRIMARY KEY (campus_name)
+);
