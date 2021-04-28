@@ -9,21 +9,21 @@
      private $brand_name;
 
      //setter
-     function set_vaccine_name(){
-        $this->$brand_name = $brand_name;
+     function set_vaccine_name($brand_name){
+        $this->brand_name = $brand_name;
       }
 
      //getters
      function get_vaccine_name(){
-        return $this->$brand_name;
+        return $this->brand_name;
       }
       // returns 1 for johnson and johnson and 2 for pfizer or moderna 
      function get_vaccine_doses(){
-         if ($brand_name == "johnson and johnson")
+         if ($this->brand_name == "johnson and johnson")
          {
              return 1;
          } 
-         else if ($brand_name == "pfizer" || $brand_name == "moderna") {
+         else if ($this->brand_name == "pfizer" || $this->brand_name == "moderna") {
              return 2;
          }
          else{
