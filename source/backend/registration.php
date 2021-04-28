@@ -19,7 +19,7 @@ if(isset($_POST['reg'])){
 
 //returns false if email is not in use and returns true if the email is in use.
 function check_if_email_used($connection, $email){
-        $sql = "SELECT * FROM users WHERE user_email = '$email'";
+        $sql = "SELECT * FROM Users WHERE email = '$email'";
 
         $stmt = $connection->prepare($sql);
 
@@ -68,7 +68,7 @@ function create_new_user($connection, $email, $password, $pass_check){
     if(!check_if_email_used($connection, $email)){
         if(check_if_kent_email($email)){
             if(check_if_passwords_match($password, $pass_check)){
-                $sql = "INSERT INTO Users(user_email, user_password) VALUES ('$email', '$password')";
+                $sql = "INSERT INTO Users(email, password) VALUES ('$email', '$password')";
 
                 $stmt = $connection->prepare($sql);
 
@@ -89,7 +89,7 @@ function create_new_user($connection, $email, $password, $pass_check){
 }
 function remove_user($connection, $email, $password){ //function created by Nathan Wodzisz, contact w/ q's
     if(check_if_email_used($connection, $email)){
-            $sql = "DELETE FROM users WHERE user_email = $email AND user_password = $password";
+            $sql = "DELETE FROM Users WHERE email = $email AND password = $password";
 
             $stmt = $connection->prepare($sql);
 

@@ -67,3 +67,14 @@ CREATE TABLE `campus` ( //Created by Nathan Wodzisz message with questions
 	doses_on_hand INT(32),
 	PRIMARY KEY (campus_name)
 );
+CREATE TABLE `Users` (
+    id INT(12) NOT NULL AUTO_INCREMENT,
+    email VARCHAR(64),
+    password VARCHAR(64),
+    appointment_1 VARCHAR(64),
+    appointment_2 VARCHAR(64),
+    vaccine_type INT,
+    vaccinated INT(2),
+    has_insurance INT(2),
+    PRIMARY KEY (id)
+);
