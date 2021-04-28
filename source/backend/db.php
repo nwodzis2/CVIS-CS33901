@@ -7,7 +7,7 @@
         //password for phpmyadmin
         private $password = "";
         //this just does this connection
-        function connect($host, $db){
+        public function connect($host = "localhost", $db = "cvis"){
             $this->connection = new mysqli($host, $this->username, $this->password, $db);
             if($this->connection->connect_error){
                 die("Couldn't connect to db : " . $this->connection->connect_error);
