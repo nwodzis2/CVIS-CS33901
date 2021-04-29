@@ -1,3 +1,5 @@
+/*Only Generalized Code needed for multiple pages should be placed here*/
+
 
 #header-main{
     background-color: #053B74;
@@ -38,6 +40,7 @@
     cursor: pointer;
 }
 #kent-logo-nav{
+    display: block;
     object-fit: contain;
     height: 95px;
     padding: 20px;
@@ -60,8 +63,101 @@
     text-align: right;
 }
 #fa-sign-out-alt-span > a > i{
-    margin-right: 20px;
-    margin-top: 20px;
+    margin: 20px;
     color: white;
     font-size: 20px;
 }
+#fa-bar-span{
+    display: none;
+    
+}
+/*****************Mobile*********************/
+@media screen and (max-width: 600px) {
+    #kent-logo-nav{
+        display: none;
+    }
+    #fa-sign-out-alt-span{
+        width: 100%;
+        text-align: left;
+    }
+
+    #fa-bar-span{
+        width: 100%;
+        display: block;
+        position: absolute;
+        text-align: right;
+        padding: 20px;
+        z-index: 2;
+    }
+    #fa-bar-span > a{
+        color: white;
+        font-size: 20px;
+    }
+    #header-main{
+        height: 90px;
+    }
+    #nav-main{
+        display: none;
+        width: 100vw;
+        height: 100vh;
+        color: white;
+        font-family: "Roboto Slab", Georgia;
+        font-size: 18px;
+        background-color: rgba(255, 255, 255, .15);  
+        backdrop-filter: blur(5px);
+        position: fixed;
+        top: 0;
+        left: 0;
+
+    }
+    #nav-main > ol{
+        list-style: none;
+        width: 100%;
+    }
+    #nav-main > ol > li{
+        display: block;
+        padding: 0px 20px 0px 20px;
+    }
+}
+/*****************Desktop*********************/
+@media screen and (min-width: 600px) {
+    
+    
+}
+.switcher {
+	display: flex;
+	align-items: center;
+	height: 30px;
+	margin-top: 8px;
+	color: #2196F3;
+}
+
+.switcher-item {
+	cursor: pointer;
+	text-decoration: none;
+	display: inline-block;
+	padding: 6px 8px;
+	font-size: 14px;
+	color: #262b3e;
+	background-color: transparent;
+	margin-right: 8px;
+	border: none;
+	border-radius: 4px;
+	outline: none;
+}
+
+.switcher-item:hover {
+	background-color: #f2f3f5;
+}
+
+.switcher-active-item {
+	text-decoration: none;
+	cursor: default;
+	color: #262b3e;
+}
+
+.switcher-active-item,
+.switcher-active-item:hover {
+	background-color: #e1eff9;
+}
+
