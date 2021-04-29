@@ -75,5 +75,9 @@
     </header>
     <h1>CVIS DASHBOARD</h1>
     <div id="curve_chart" style="width: 40%; height: 40%;"></div>
+    <div id="curve_chart" style="width: 40%; height: 40%;"></div>
+    <div id="curve_chart" style="width: 40%; height: 40%;"></div>
+    <div id="curve_chart" style="width: 40%; height: 40%;"></div>
+    <div id="curve_chart" style="width: 40%; height: 40%;"></div>
   </body>
 </html>

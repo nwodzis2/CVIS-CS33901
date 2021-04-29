@@ -1,12 +1,14 @@
-*{
-    
-}
 
 #header-main{
     background-color: #053B74;
     height: 120px;
     border-bottom: 5px solid #EDAA28;
     display: flex;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    left: 0;
+    right: 0;
 }
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
 #nav-main{
