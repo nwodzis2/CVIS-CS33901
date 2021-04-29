@@ -1,0 +1,65 @@
+*{
+    
+}
+
+#header-main{
+    background-color: #053B74;
+    height: 120px;
+    border-bottom: 5px solid #EDAA28;
+    display: flex;
+}
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+#nav-main{
+    width: 100%;
+    color: white;
+    align-self: flex-end;
+    font-size: 18px;
+    display: block;
+    font-family: "Roboto Slab", Georgia;
+}
+#nav-main > ol{
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    width: 100%;
+}
+#nav-main > ol > li{
+    display: inline;
+    padding: 0px 20px 0px 20px;
+}
+#nav-main > ol > li > a{
+    color: white;
+}
+#nav-main > ol > li > a:hover{
+    color: white;
+    text-decoration: underline;
+    cursor: pointer;
+}
+#kent-logo-nav{
+    object-fit: contain;
+    height: 95px;
+    padding: 20px;
+    position:absolute;
+}
+#ksu-hs-logo-nav{
+    height: 55px;
+}
+#ksu-hs-logo-nav-span{
+    width: 100%;
+    position: absolute;
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+}
+#fa-sign-out-alt-span{
+    width: 100%;
+    position: absolute;
+    display: block;
+    text-align: right;
+}
+#fa-sign-out-alt-span > a > i{
+    margin-right: 20px;
+    margin-top: 20px;
+    color: white;
+    font-size: 20px;
+}
