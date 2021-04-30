@@ -211,7 +211,6 @@
             
         }
     }
-    
     function reschedule_appointment($connection, $user_email, $new_campus, $new_day, $new_month, $new_time_of, $new_vaccine_giver){
         if(!has_appointment($connection, $user_email)) {
             echo "You do not have a pending appointment to reschedule";

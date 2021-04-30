@@ -19,6 +19,9 @@ INSERT INTO VerifiedEmails VALUES ('swellin4@kent.edu');
 INSERT INTO VerifiedEmails VALUES ('nwodzis2@kent.edu');
 INSERT INTO VerifiedEmails VALUES ('awolff6@kent.edu');
 
+INSERT INTO Appointments(first, last, user_email, campus, day, month, time_of, completed, vaccine_giver)
+                VALUES ('Nathan', 'Wodzisz','$nwodzis2@kent.edu', 'stark', '21','april','12:30','1','nate')
+
 CREATE TABLE `Appointments` (
 	`appointment_id` INT(32) NOT NULL AUTO_INCREMENT,
     `first` VARCHAR(64),

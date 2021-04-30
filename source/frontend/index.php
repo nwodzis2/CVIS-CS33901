@@ -1,4 +1,10 @@
 <?php session_start() ?>
+<?php
+//populate graph
+include_once("../backend/graphs.php");
+$graph = new vaccineGraph();
+$total_graph_data = $graph->get_total_data();
+?>
 <html>
 
   <head>
@@ -142,6 +148,8 @@ var areaSeries = chart.addAreaSeries({
 });
 
 areaSeries.setData([
+  <?php echo $total_graph_data; ?>
+  /*
 	{ time: '2018-10-19', value: 46.33 },
 	{ time: '2018-10-22', value: 45.97 },
 	{ time: '2018-10-23', value: 46.36 },
@@ -291,7 +299,7 @@ areaSeries.setData([
 	{ time: '2019-05-22', value: 49.65 },
 	{ time: '2019-05-23', value: 49.85 },
 	{ time: '2019-05-24', value: 49.61 },
-	{ time: '2019-05-28', value: 49.24 },
+	{ time: '2019-05-28', value: 49.24 },*/
 ]);
   </script>
       <?php
@@ -326,4 +334,5 @@ areaSeries.setData([
       </div>
     </main>
   </body>
+  <?php echo $total_graph_data; ?>
 </html>
