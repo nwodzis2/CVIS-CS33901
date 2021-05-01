@@ -2,6 +2,7 @@
 include_once("../backend/db.php");
 class graph{
     protected $thearray;
+    protected $jsonString;
     protected $connection;
     public function __construct()
     {
@@ -14,9 +15,6 @@ class graph{
     }
     public function get_campus_data($campus){
         //virtual
-    }
-    protected function return_array(){
-
     }
 }
 class paymentGraph extends graph{
@@ -76,8 +74,8 @@ class vaccineGraph extends graph{
             while($row = mysqli_fetch_assoc($result)){
                 $day = $row['day'];
                 $month = $row['month'];
-                $output = "2021-" . $day . "-" . $month;
-                $date = DateTime::createFromFormat('Y-m-D', $output);
+                
+                
                 $sql2 = "SELECT COUNT(*) AS total FROM Appointments WHERE day = '$day' AND month = '$month' AND completed = 1";
                 $stmt2 = $this->connection->prepare($sql2);
                
@@ -88,17 +86,62 @@ class vaccineGraph extends graph{
                     echo "query failed";
                 }
                 else{
+                    $month = sprintf("%02d", $month);
+                    $output = "2021-" . $month . "-" . $day;
                     //need an array of arrays
-                    $row2 = mysqli_fetch_assoc($result);
-                    $thearray[$output] = $row2['total'];
-                    
+                    $row2 = mysqli_fetch_assoc($result2);
+                    $date = DateTime::createFromFormat('Y-m-d', $output);
+                    $this->thearray[$date->format('Y-m-d')] = $row2['total'];
                 }
             }
         }
-        return json_encode($thearray);
+        ksort($this->thearray);
+        foreach($this->thearray as $x => $x_value){
+            $this->jsonString = $this->jsonString . "{ time: '" . $x . "', value: " . $x_value . " },";
+        }
+        return $this->jsonString;
     }
     public function get_campus_data($campus){
-        
+        $sql = "SELECT DISTINCT day, month FROM Appointments WHERE completed = 1 AND campus = '$campus'";
+
+            $stmt = $this->connection->prepare($sql);
+
+            $stmt->execute();
+
+            $result = $stmt->get_result();
+        if(!$result){
+                echo "query failed";
+            }
+        else{
+            while($row = mysqli_fetch_assoc($result)){
+                $day = $row['day'];
+                $month = $row['month'];
+                
+                
+                $sql2 = "SELECT COUNT(*) AS total FROM Appointments WHERE day = '$day' AND month = '$month' AND completed = 1 AND campus = '$campus'";
+                $stmt2 = $this->connection->prepare($sql2);
+               
+                $stmt2->execute();
+                
+                $result2 = $stmt2->get_result();
+                if(!$result2){
+                    echo "query failed";
+                }
+                else{
+                    $month = sprintf("%02d", $month);
+                    $output = "2021-" . $month . "-" . $day;
+                    //need an array of arrays
+                    $row2 = mysqli_fetch_assoc($result2);
+                    $date = DateTime::createFromFormat('Y-m-d', $output);
+                    $this->thearray[$date->format('Y-m-d')] = $row2['total'];
+                }
+            }
+        }
+        ksort($this->thearray);
+        foreach($this->thearray as $x => $x_value){
+            $this->jsonString = $this->jsonString . "{ time: '" . $x . "', value: " . $x_value . " },";
+        }
+        return $this->jsonString;
     }
 }
 ?>

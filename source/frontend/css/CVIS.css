@@ -2,6 +2,7 @@
 
 
 #header-main{
+    z-index: 10000;
     background-color: #053B74;
     height: 120px;
     border-bottom: 5px solid #EDAA28;

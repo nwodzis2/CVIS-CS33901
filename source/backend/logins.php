@@ -37,7 +37,9 @@ function check_if_correct_credentials($connection, $email, $password){
             }
             else{
                 $_SESSION['authenticated'] = true;
-                echo 'a user has these details';
+                $_SESSION['user'] = explode('@', $email)[0];
+                echo "success";
+                header("location: ../frontend/index.php");
             }
         }
 }
