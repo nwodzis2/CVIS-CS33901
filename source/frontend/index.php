@@ -2,6 +2,7 @@
       if(!$_SESSION['authenticated']){
         header("location: ./login.php");
       }
+  error_reporting(0);
 ?>
 <?php
 //populate graph
@@ -73,7 +74,7 @@ function createCharts(){
     lineColor: 'rgba(33, 150, 243, 1)',
     lineWidth: 2,
 });
-
+*/
 areaSeries.setData([
   <?php echo $total_graph_data; ?>
 ]);

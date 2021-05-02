@@ -1,36 +1,55 @@
 <?php
+/* 
+Created by Jaden Kandel Spring 2021 Semester
+CITATIONS FOR CODE AND IMAGES:
+-inspiration and most of the code: https://www.youtube.com/watch?v=OWNxUVnY3pg&ab_channel=EasyTutorials
+-background image from flashline sign in page.
 
-//error_reporting(0);
-include_once("../backend/logins.php");
+*/
 ?>
+
 <html>
-    <head>
-    <meta charset="utf-8">
-    <title><?php if($_SESSION['authenticated']){echo ucfirst($_SESSION['user']); echo "'s ";} ?>CVIS login</title>
-    <link rel="shortcut icon" href="./images/favicon.ico">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="css/CVIS.css?v=<?php echo time(); ?>">
-    </head>
+<head>
+    <title>Login Page for CVIS</title>
+    <link rel="stylesheet" type="text/css" href="login.css">
+</head>
 <body>
-<form method="post" action="../backend/logins.php">
-  	<div class="input-group">
-  	  <label>Email</label>
-  	  <input type="email" name="email" value="<?php echo $email; ?>">
-  	</div>
-  	<div class="input-group">
-  	  <label>Password</label>
-  	  <input type="password" name="password">
-  	</div>
-  	  <button type="submit" class="btn" name="log">Login</button>
-  	</div>
-  	<p>
-  		Need an Account? <a href="register.php">Register</a>
-  	</p>
-</form>
+    <div class="loginbox">
+        <img src="images/kent-logo.png" class="avatar">
+            <h1>Login Here</h1>
+            <form method="post">
+                <p>Email</p>
+                <input type="text" name="email" placeholder="Enter Email">
+                <p>Password</p>
+                <input type="password" name="password" placeholder="Enter Password">
+                <input type="submit" name="log" value="Login">
+                <a href="register.php">Don't have an account?</a>
+                <br>
+            
+            </form>
+        
+        
+    </div>
+<?php
+session_start();
+include_once("../backend/db.php");
+include_once("../backend/logins.php");
+
+$DB_link = new DB_Link();
+$connection = $DB_link->connect("localhost", "cvis");
+
+$email = "";
+$password = "";
+
+
+if(isset($_POST['log'])){
+  $email = $_POST['email'];
+  $password = $_POST['password'];
+  //checks if a correct user and password were given
+check_if_correct_credentials($connection, $email, $password);
+}
+?>
+
 </body>
+</head>
 </html>

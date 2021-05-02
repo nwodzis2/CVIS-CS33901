@@ -1,21 +1,10 @@
 <?php
-session_start();
+
 include_once("../backend/db.php");
 
 $DB_link = new DB_Link();
 $connection = $DB_link->connect("localhost", "cvis");
 
-//values to store the form from
-$email = "";
-$password = "";
-$pass_check = "";
-
-//runs when the form is hit
-if(isset($_POST['reg'])){
-  $email = $_POST['email'];
-  $password = $_POST['password_1'];
-  $pass_check = $_POST['password_2'];
-}
 
 //returns false if email is not in use and returns true if the email is in use.
 function check_if_email_used($connection, $email){
@@ -75,16 +64,19 @@ function create_new_user($connection, $email, $password, $pass_check){
                 $stmt->execute();
 
                 $result = $stmt->get_result();
-                echo "Your account has been registered!";
+                echo '<script>
+                alert("Your account has been registered!");
+                window.location.href="../frontend/index.php";
+                </script>';
             }
             else{
-                echo "passwords do not match";
+                echo '<script>alert("Passwords do not match")</script>';
         }}
         else{
-            echo "This was not a kent email";
+            echo '<script>alert("This was not a kent email")</script>';
         }}
     else{
-        echo "This email is already in use";
+        echo '<script>alert("This email is already in use")</script>';
     }   
 }
 function remove_user($connection, $email, $password){ //function created by Nathan Wodzisz, contact w/ q's
@@ -101,7 +93,5 @@ function remove_user($connection, $email, $password){ //function created by Nath
         echo "This email is NOT in use";
     }   
 }
-//creates new user from the form... mess around with it if u wanna bug hunt
-create_new_user($connection, $email, $password, $pass_check);
 //remove_user($connection, $email, $password);
 ?>
