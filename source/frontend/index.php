@@ -2,9 +2,11 @@
       if(!$_SESSION['authenticated']){
         header("location: ./login.php");
       }
-  error_reporting(0);
 ?>
 <?php
+$user = $_SESSION['user'];
+
+
 //populate graph
 include_once("../backend/graphs.php");
 $graph = new vaccineGraph();
@@ -27,6 +29,7 @@ $total_graph_data = $graph->get_campus_data("stark");
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link href="/fontawesome-free-5.15.3-web/css/all.css" rel="stylesheet"> <!--load all styles -->
     <link rel="stylesheet" href="css/CVIS.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
     
   </head>
   <body>
@@ -82,6 +85,8 @@ areaSeries.setData([
 
 
   </script>
+  
+
     <header id="header-main">
       <img id="kent-logo-nav" src="./images/kent-logo.png" alt="">
       <span id="ksu-hs-logo-nav-span"><img id="ksu-hs-logo-nav" src="./images/ksu-hs-logo.png" alt=""></span>

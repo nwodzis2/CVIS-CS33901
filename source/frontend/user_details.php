@@ -1,6 +1,13 @@
 <?php 
 //Created by Jaden Kandel Spring Semester 2021
 session_start();
+    if(!$_SESSION['authenticated']){
+        header("location: ./login.php");
+}
+$user = $_SESSION['user'];
+$kent = "@kent.edu";
+$f_email = $user.$kent;
+
 ?>
 <?php
 include_once("../backend/db.php");
@@ -10,7 +17,7 @@ $DB_link = new DB_Link();
 $connection = $DB_link->connect("localhost", "CVIS");
 
 //email should come from the session
-$user_stuff = get_user_details_by_email($connection, 'jkandel4@kent.edu');
+$user_stuff = get_user_details_by_email($connection, $f_email);
 
 
 
@@ -33,7 +40,7 @@ $user_stuff = get_user_details_by_email($connection, 'jkandel4@kent.edu');
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <link href="/fontawesome-free-5.15.3-web/css/all.css" rel="stylesheet"> <!--load all styles -->
         <link rel="stylesheet" href="css/CVIS.css?v=<?php echo time(); ?>">
-        <link rel="stylesheet" type="text/css" href="user_details.css">
+        <link rel="stylesheet" type="text/css" href="user_details.css?v=<?php echo time(); ?>">
     
   </head>
   <body>
@@ -61,7 +68,7 @@ $user_stuff = get_user_details_by_email($connection, 'jkandel4@kent.edu');
         <h1><center>User Details<center></h1>
         
         <?php    
-        $user_stuff = get_user_details_by_email($connection, 'tester@kent.edu');
+        $user_stuff = get_user_details_by_email($connection, $f_email);
         ?>
         <div class="panel panel-info ">
             <div class="panel-heading"><center><strong>User information</strong></center></div>

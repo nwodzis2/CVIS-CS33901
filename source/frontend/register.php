@@ -1,6 +1,6 @@
 <?php
 /* 
-
+Created by Jaden Kandel Spring 2021 Semester
 CITATIONS FOR CODE AND IMAGES:
 -inspiration and most of the code: https://www.youtube.com/watch?v=OWNxUVnY3pg&ab_channel=EasyTutorials
 -background image from flashline sign in page.
