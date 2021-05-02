@@ -1,13 +1,13 @@
 <?php
 //Created by Jaden Kandel Spring 2021 Semester
 include_once("../backend/db.php");
-
 $DB_link = new DB_Link();
 $connection = $DB_link->connect("localhost", "cvis");
 
 
 //doesn't really return anything right now,,, not sure how you want to do this with sessions but ya it currently just echos what is going down
 function check_if_correct_credentials($connection, $email, $password){
+    
         $sql = "SELECT * FROM Users WHERE email = '$email' AND password = '$password'";
 
         $stmt = $connection->prepare($sql);
@@ -27,6 +27,9 @@ function check_if_correct_credentials($connection, $email, $password){
             }
             else{
                 $_SESSION['authenticated'] = true;
+                $_SESSION['email'] = $email;
+                $_SESSION['first_name'] = "first";
+                $_SESSION['last_name'] = "last";
                 $_SESSION['user'] = explode('@', $email)[0];
                 echo "success";
                 header("location: ../frontend/index.php");
@@ -34,6 +37,7 @@ function check_if_correct_credentials($connection, $email, $password){
                 alert("Your have successfully signed in!");
                 window.location.href="../frontend/index.php";
                 </script>';
+                exit();
             }
         }
 }

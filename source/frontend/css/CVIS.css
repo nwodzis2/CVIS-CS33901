@@ -163,7 +163,16 @@
 }
 
 .apt-centered{
-    height: 100%;
-    padding-top: 20%;
+    padding-top: 5%;
     text-align: center;
+}
+#my-calendar{
+    width: 95%;
+    padding-left: 5%;
+}
+#campus-select-cont{
+    padding-left: 5%;
+}
+#time-select-form{
+    margin-right: 20px;
 }
