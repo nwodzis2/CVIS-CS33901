@@ -1,4 +1,7 @@
-<?php session_start() ?>
+<?php 
+session_start();
+error_reporting(0);
+?>
 <?php
 //populate graph
 include_once("../backend/graphs.php");
@@ -13,6 +16,7 @@ $total_graph_data = $graph->get_total_data();
 
     
     <script type="text/javascript">
+    
       google.charts.load('current', {'packages':['corechart']});
       google.charts.setOnLoadCallback(drawChart);
 
@@ -56,6 +60,7 @@ $total_graph_data = $graph->get_total_data();
       
     </script>
     <script>
+    
       function openLogin(){
         var x = document.getElementById("nav-main");
           if (x.style.display === "block") {
@@ -80,6 +85,7 @@ $total_graph_data = $graph->get_total_data();
   </head>
   <body>
   <script >
+
     function createSimpleSwitcher(items, activeItem, activeItemChangedCallback) {
 	var switcherElement = document.createElement('div');
 	switcherElement.classList.add('switcher');
@@ -112,7 +118,7 @@ $total_graph_data = $graph->get_total_data();
 
 	return switcherElement;
 }
-
+/*
 var switcherElement = createSimpleSwitcher(['Courier New', 'Arial', 'Times New Roman'], 'Trebuchet MS', function(fontFamily) {
 	chart.applyOptions({
 		layout: {
@@ -120,7 +126,8 @@ var switcherElement = createSimpleSwitcher(['Courier New', 'Arial', 'Times New R
 		},
 	});
 });
-
+*/
+/*
 var chartElement = document.createElement('div');
 
 var chart = LightweightCharts.createChart(chartElement, {
@@ -146,7 +153,7 @@ var areaSeries = chart.addAreaSeries({
   lineColor: 'rgba(33, 150, 243, 1)',
   lineWidth: 2,
 });
-
+*/
 areaSeries.setData([
   <?php echo $total_graph_data; ?>
   /*
@@ -303,11 +310,14 @@ areaSeries.setData([
 ]);
   </script>
       <?php
+      //has a bug or something idk
+      /*
       if(!$_SESSION['authenticated']){
         echo"
         <script type='text/javascript'>showAuthModal()</script>
         ";
       }
+      */
       ?>
     <header id="header-main">
       <img id="kent-logo-nav" src="./images/kent-logo.png" alt="">
