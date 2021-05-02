@@ -44,8 +44,8 @@
     <main>
       <h1>Appointments</h1>
       <div class="row">
-        <div class="col-md-6"><input type="date" placeholder="yyyy-mm-dd" /></div>
-        <div class="col-md-6"></div>
+        <div class="col-md-6 apt-centered"><input type="date" placeholder="yyyy-mm-dd" /></div>
+        <div class="col-md-6 apt-centered"></div>
       </div>
     </main>
     <?php echo $total_graph_data; ?>

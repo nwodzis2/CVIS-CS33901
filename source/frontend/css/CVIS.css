@@ -162,3 +162,8 @@
 	background-color: #e1eff9;
 }
 
+.apt-centered{
+    height: 100%;
+    padding-top: 20%;
+    text-align: center;
+}

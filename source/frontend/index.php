@@ -74,7 +74,6 @@ function createCharts(){
     lineColor: 'rgba(33, 150, 243, 1)',
     lineWidth: 2,
 });
-*/
 areaSeries.setData([
   <?php echo $total_graph_data; ?>
 ]);
