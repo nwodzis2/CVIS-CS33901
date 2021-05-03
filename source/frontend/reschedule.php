@@ -49,13 +49,14 @@
     <nav class="navbar navbar-default navbar-static-top">
   <div class="container">
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Schedule Appointment <span class="sr-only">(current)</span></a></li>
-      <li><a href="reschedule.php">Reschedule Appointment</a></li>
+      <li ><a href="appointment.php">Schedule Appointment </a></li>
+      <li class="active"><a href="reschedule.php">Reschedule Appointment<span class="sr-only">(current)</span></a></li>
       <li><a href="cancel.php">Cancel Appointment</a></li>
     </ul>
   </div>
 </nav>
-      <h1>Schedule Appointment</h1>
+      <h1>Reschedule Appointment</h1>
+      <p>Make a new appointment and your last will automatically be canceled</p>
       <div class="row">
         <div class="col-md-6">
           <div id='campus-select-cont'>
@@ -149,7 +150,7 @@ if(isset($_POST['apt-submit'])){
   $DB_link = new DB_Link();
   $connection = $DB_link->connect("localhost", "cvis");
   $apt_time = $_POST['timeSelect'];
-  make_appointment($connection, $_SESSION['first'], $_SESSION['last'], $_SESSION['email'], $_SESSION['campus'], $_SESSION['day'], $_SESSION['month'], $apt_time, 0, NULL);
+  reschedule_appointment($connection, $_SESSION['email'], $_SESSION['campus'], $_SESSION['day'], $_SESSION['month'], $apt_time, NULL);
 }
 if(isset($_POST['day'])){
   

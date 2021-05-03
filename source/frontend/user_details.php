@@ -27,7 +27,7 @@ $user_stuff = get_user_details_by_email($connection, $f_email);
   <head>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
-
+    <script src="./js/main.js"></script>
     <meta charset="utf-8">
     <title><?php if($_SESSION['authenticated']){echo ucfirst($_SESSION['user']); echo "'s ";} ?>CVIS Dashboard</title>
         <link rel="shortcut icon" href="./images/favicon.ico">
@@ -58,7 +58,7 @@ $user_stuff = get_user_details_by_email($connection, $f_email);
                 <li><a href="admin.php">Admin</a></li>
             </ol>
         </nav>
-
+        
     </header>
     <!--- End of navbar --->
 <div class="container">

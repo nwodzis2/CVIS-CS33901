@@ -266,6 +266,27 @@
             make_appointment($connection, $first, $last, $email, $new_campus, $new_day, $new_month, $new_time_of, $completed, $new_vaccine_giver);
         }  
     }
+    function get_appointments_by_email($connection, $email){
+        if(!has_appointment($connection, $email)) {
+            echo "You do not have a pending appointment";
+        }
+        else{
+            $sql = "SELECT * FROM Appointments WHERE user_email = '$email' AND completed = 0";
+
+            $stmt = $connection->prepare($sql);
+
+            $stmt->execute();
+
+            $result = $stmt->get_result();
+            $row = mysqli_fetch_assoc($result);
+            $return_campus = $row['campus'];
+            $return_time = $row['time_of'];
+            $return_month = $row['month'];
+            $return_day = $row['day'];
+            echo "<p style='font-size: 20px;'> <span style='color: #053B74;'>campus:</span> " . $return_campus . "<br> <span style='color: #053B74;'>date: </span>" . "2021/". $return_month . "/" . $return_day . "<br><span style='color: #053B74;'> time: </span>" . $return_time . "</p>" ;
+            
+        }
+    }
 
 /*
 CREATE TABLE `Appointments` (
