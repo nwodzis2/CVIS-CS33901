@@ -1,9 +1,24 @@
 <?php
+
 //Made by Jaden Kandel Spring Semester 2021 for Software Engineering
     include_once("../backend/db.php");
+    
 
     $DB_link = new DB_Link();
     $connection = $DB_link->connect("localhost", "cvis");
+    /*$appointmentArray = [];
+    
+    $datetime = DateTime::createFromFormat('G:i', "8:00");
+    for($i = 0; $i < 60; $i++){
+        if(!check_for_appointment_at_time_and_location($connection, $_POST['campus'], $_POST['day'], $_POST['month'], $datetime->format('G:i:s'))){
+            array_push($appointmentArray, $datetime->format('G:i'));
+        }
+        $datetime->modify('+10 minutes');
+    }
+    $_SESSION['apt-array'] = $appointmentArray;*/
+    
+    //echo $datetime->format('G:i:s');
+    //$appointmentArray = check_for_appointment_at_time_and_location($connection, $_POST['campus'], $_POST['day'], $_POST['month'], );
     
     class Appointment {
         private $a_fname;
@@ -251,11 +266,7 @@
             make_appointment($connection, $first, $last, $email, $new_campus, $new_day, $new_month, $new_time_of, $completed, $new_vaccine_giver);
         }  
     }
-?>
 
-
-
-<?php 
 /*
 CREATE TABLE `Appointments` (
 	`appointment_id` INT(32) NOT NULL AUTO_INCREMENT,
@@ -274,4 +285,4 @@ CREATE TABLE `Appointments` (
 INSERT INTO Appointments(user_email, campus, day, month, time_of, completed, vaccine_giver) VALUES ('jkandel4@kent.edu', 'stark', '25','4','9:00','1','bob smith')
 
 */
-    
+?>

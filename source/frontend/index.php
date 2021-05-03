@@ -2,6 +2,7 @@
       if(!$_SESSION['authenticated']){
         header("location: ./login.php");
       }
+  //error_reporting(0);
 ?>
 <?php
 $user = $_SESSION['user'];
@@ -20,7 +21,7 @@ $total_graph_data = $graph->get_campus_data("stark");
     <script src="./js/main.js"></script>
     <meta charset="utf-8">
     <title><?php if($_SESSION['authenticated']){echo ucfirst($_SESSION['user']); echo "'s ";} ?>CVIS Dashboard</title>
-    <link rel="shortcut icon" href="./images/favicon.ico">
+    <link rel="shortcut icon" href="./images/favicon.ico"> <!--From kent state's website, property of kent state. Using for educational purpose only-->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
@@ -49,7 +50,7 @@ if(window.attachEvent) {
     }
 }
 
-function createCharts(){
+function createCharts(){ //using trading views charts
   var chartElement = document.createElement('div');
   chartElement.className = "col-md-6";
   chartElement.id = "campus_vac_chart";
@@ -88,7 +89,7 @@ areaSeries.setData([
   
 
     <header id="header-main">
-      <img id="kent-logo-nav" src="./images/kent-logo.png" alt="">
+      <img id="kent-logo-nav" src="./images/kent-logo.png" alt=""> <!--From kent state's website, property of kent state. Using for educational purpose only-->
       <span id="ksu-hs-logo-nav-span"><img id="ksu-hs-logo-nav" src="./images/ksu-hs-logo.png" alt=""></span>
       <span id="fa-sign-out-alt-span"><a href=""><i id="sign-out-nav" class="fas fa-sign-out-alt"></i></a></span>
       <span id="fa-bar-span"><a href="javascript:void(0);" onclick="openLogin()"><i class="fas fa-bars"></i></a></span>
