@@ -68,6 +68,8 @@ $user = $_SESSION['user'];
         <div class="col-md-6">
           <div id='campus-select-cont'>
             <br>
+        <input type="checkbox" id="insurance" name="insurance" value="true">
+        <label for="insurance"> I have insurance</label><br>
           <label for="campus-select">Choose a campus:</label>
           <select name="campus-select" id="campus-select">
             <option value="kent">Kent Main Campus</option>
@@ -84,12 +86,14 @@ $user = $_SESSION['user'];
           <br>
           <div id="my-calendar"></div>
         </div>
+        
         <div id="time-select" class="col-md-6 apt-centered"></div>
       </div>
     </main>
   </body>
   <script>
     var campus_ = 'kent';
+    var insurance_ = false;
     //not my (Nathan Wodzisz) calendar, using personally modified Tavo Calendar
 const myCalendar = new TavoCalendar('#my-calendar', {
       date: "<?php echo date("Y-m-d");?>",
@@ -100,6 +104,7 @@ const myCalendar = new TavoCalendar('#my-calendar', {
 })
 function useCampus(){
       campus_ = document.getElementById('campus-select').value;
+      insurance_ = document.getElementById('insurance').value;
   }
 document.getElementById('my-calendar').addEventListener('calendar-select', (ev) => {
   var formString = myCalendar.getSelected().toString();
@@ -109,7 +114,7 @@ document.getElementById('my-calendar').addEventListener('calendar-select', (ev) 
   form1.append("day", myDate.substring(8,9));
   form1.append("month", myDate.substring(5,6));
   form1.append("campus", campus);*/
-  var data_ = { day: formString.substring(8,10), month: formString.substring(5,7), campus: campus_ }
+  var data_ = { day: formString.substring(8,10), month: formString.substring(5,7), campus: campus_ , insurance: insurance_}
   $.ajax({
         method: "POST",
         data: data_,
@@ -123,7 +128,7 @@ document.getElementById('my-calendar').addEventListener('calendar-select', (ev) 
     //posting.done(fillDates());
   })
   document.getElementById('campus-select').addEventListener("change", useCampus, false); 
-  
+  document.getElementById('insurance').addEventListener("change", useCampus, false);
   function fillDates(){
     let dates =
       <?php
@@ -153,6 +158,7 @@ document.getElementById('my-calendar').addEventListener('calendar-select', (ev) 
 </script>
 <?php
 include_once("../backend/appointment.php");
+include_once("../backend/user.php");
 if(isset($_POST['apt-submit'])){
   $DB_link = new DB_Link();
   $connection = $DB_link->connect("localhost", "cvis");
@@ -160,7 +166,7 @@ if(isset($_POST['apt-submit'])){
   make_appointment($connection, $_SESSION['first'], $_SESSION['last'], $_SESSION['email'], $_SESSION['campus'], $_SESSION['day'], $_SESSION['month'], $apt_time, 0, NULL);
 }
 if(isset($_POST['day'])){
-  
+  update_insurance($connection, $_SESSION['email'], $_SESSION['insurance']);
   $_SESSION['campus'] = $_POST['campus'];
   $_SESSION['day'] = $_POST['day'];
   $_SESSION['month'] = $_POST['month'];include_once("../backend/db.php");

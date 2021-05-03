@@ -53,6 +53,18 @@ $tuscarawas_graph_data = $graph->get_campus_data("tuscarawas");
   </head>
   <body>
   <script >
+    var thesignout = {signout: true};
+    function signOut(){
+      $.ajax({
+        method: "POST",
+        data: thesignout,
+        success: function(){},
+        error: function(){
+                console.log("error")
+            }
+    });
+
+    }
 if(window.attachEvent) {
     window.attachEvent('onload', createCharts);
 } else {
@@ -168,7 +180,7 @@ function getGraph(){
     <header id="header-main">
       <img id="kent-logo-nav" src="./images/kent-logo.png" alt=""> <!--From kent state's website, property of kent state. Using for educational purpose only-->
       <span id="ksu-hs-logo-nav-span"><img id="ksu-hs-logo-nav" src="./images/ksu-hs-logo.png" alt=""></span>
-      <span id="fa-sign-out-alt-span"><a href=""><i id="sign-out-nav" class="fas fa-sign-out-alt"></i></a></span>
+      <span id="fa-sign-out-alt-span"><a href="javascript:void(0);" onclick="signOut()"><i id="sign-out-nav" class="fas fa-sign-out-alt"></i></a></span>
       <span id="fa-bar-span"><a href="javascript:void(0);" onclick="openLogin()"><i class="fas fa-bars"></i></a></span>
         <nav id="nav-main">
             <ol>
@@ -202,5 +214,15 @@ function getGraph(){
       </div>
     </main>
     <?php echo $total_graph_data; ?>
+    <?php
+    include_once('../backend/user.php');
+  if(isset($_POST['signout'])){
+    
+    echo "<script>window.location.href='./index.php';</script>";
+    logOut();
+  }
+  
+  ?>
   </body>
+ 
 </html>

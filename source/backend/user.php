@@ -67,9 +67,22 @@
             return $this->u_has_insurance;
         }
     }
-    
+    function update_insurance($connection, $email, $expression){
+        $sql = "SELECT * FROM users WHERE email = '$email'";
+        $stmt = $connection->prepare($sql);
+        $sql = "UPDATE users SET has_insurance = '$expression' WHERE email = '$email'";
+        $stmt->execute();
+
+        $result = $stmt->get_result();   
+        if(!$result){
+            echo "query failed";
+        }
+        else{    
+        }
+    }
     function get_user_details_by_email($connection, $email){
         $sql = "SELECT * FROM users WHERE email = '$email'";
+        
 
         $stmt = $connection->prepare($sql);
 
@@ -97,7 +110,9 @@
         }
    
     }
-        
+    function logOut(){
+        $_SESSION['authenticated'] = false;
+    }
 ?>
 
     
