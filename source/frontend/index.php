@@ -11,7 +11,6 @@ $user = $_SESSION['user'];
 //populate graph
 include_once("../backend/graphs.php");
 $graph = new vaccineGraph();
-$total_graph_data = $graph->get_campus_data("stark");
 
 //add to every page at top, this is the name that you click for active user
 $user = $_SESSION['user'];
@@ -21,12 +20,13 @@ $user = $_SESSION['user'];
 //end active user
 
 $total_graph_data = $graph->get_total_data();
+$kent_graph_data = $graph->get_total_data();
 $stark_graph_data = $graph->get_campus_data("stark");
 $ashtabula_graph_data = $graph->get_campus_data("ashtabula");
 $eastliverpool_graph_data = $graph->get_campus_data("eastliverpool");
 $salem_graph_data = $graph->get_campus_data("salem");
 $geauga_graph_data = $graph->get_campus_data("geauga");
-$trumbull_graph_data = $graph->get_campus_data("trumbul");
+$trumbull_graph_data = $graph->get_campus_data("trumbull");
 $tuscarawas_graph_data = $graph->get_campus_data("tuscarawas");
 ?>
 <html>
@@ -79,18 +79,19 @@ if(window.attachEvent) {
         window.onload = createCharts;
     }
 }
-
+var areaSeries;
+var value = total;
 function createCharts(){ //using trading views charts
   
   
-  var value = document.getElementById('campus-graph-select').value;
+  value = document.getElementById('campus-graph-select').value;
   var chartElement = document.createElement('div');
   chartElement.className = "col-md-6 campus_vac_chart";
   chartElement.id = "campus_vac_chart";
   var row1 = document.getElementById('row-1');
   row1.appendChild(chartElement);
   var campusChart = LightweightCharts.createChart(chartElement, {
-    width: chartElement.offsetWidth - 50,
+    width: chartElement.offsetWidth - 70,
     height: window.innerHeight / 2,
     layout: {
       fontFamily: 'Comic Sans MS',
@@ -105,13 +106,15 @@ function createCharts(){ //using trading views charts
   
   //row1.appendChild(chartElement);
 
-  var areaSeries = campusChart.addAreaSeries({
+  areaSeries = campusChart.addAreaSeries({
     topColor: 'rgba(33, 150, 243, 0.56)',
     bottomColor: 'rgba(33, 150, 243, 0.04)',
     lineColor: 'rgba(33, 150, 243, 1)',
     lineWidth: 2,
 });
+areaSeries.setData([]);
 switch(value){
+    
     case "total":
       areaSeries.setData([
     <?php echo $total_graph_data; ?>
@@ -164,14 +167,64 @@ switch(value){
     break
   }
 }
+function createCharts2(){
+  
+  areaSeries.setData([]);
+  value = document.getElementById('campus-graph-select').value;
+  switch(value){
+    case "total":
+      areaSeries.setData([
+    <?php echo $total_graph_data; ?>
+    ]);
+      break;
+    case "kent":
+      areaSeries.setData([
+    <?php echo $kent_graph_data; ?>
+    ]);
+      break;
+    case "stark":
+      areaSeries.setData([
+    <?php echo $stark_graph_data; ?>
+    ]);
+      break;
+    case "ashtabula":
+      areaSeries.setData([
+    <?php echo $ashtabula_graph_data; ?>
+    ]);
+      break;
+    case "eastliverpool":
+      areaSeries.setData([
+    <?php echo $eastliverpool_graph_data; ?>
+    ]);
+      break;
+    case "salem":
+      areaSeries.setData([
+    <?php echo $salem_graph_data; ?>
+    ]);
+      break;
+    case "geauga":
+      areaSeries.setData([
+    <?php echo $geauga_graph_data; ?>
+    ]);
+      break;
+    case "trumbull":
+      areaSeries.setData([
+    <?php echo $trumbull_graph_data; ?>
+    ]);
+      break;
+    case "tuscarawas":
+      areaSeries.setData([
+    <?php echo $tuscarawas_graph_data; ?>
+    ]);
+      break;
+    default:
+    areaSeries.setData([]);
+    break
+  }
+}
 var i = 0;
 function getGraph(){
-  
-  if(i > 1){
-    $("#row-1").empty();
-    i++;
-  }
-  createCharts();
+  createCharts2();
 }
 
   </script>
@@ -195,7 +248,27 @@ function getGraph(){
     
     <main>
       <h1>CVIS DASHBOARD</h1>
-      <div id="row-1" class="row row-1">
+      <div id="row-1" class="row-1 row">
+      <div class="col-md-6" id="mission-statement">
+            <div id="mission-statement-inner">
+            <h2 style="color: #053B74;">The mission of the KSU-HS is to provide quality healthcare, health counseling, and health education.</h2>
+            <p style="font-size: 20px">Following the events of the Coronavirus, the office has expanded and has been tracking the Coronavirus cases on campus. With the arrival of the Coronavirus vaccine, the KSU-HS office has introduced an integrated automated system that helps monitor the Coronavirus vaccination of the KSU students and employees. For such a purpose the KSU-HS has set up one vaccination station at each of the 8 campuses across Ohio. </p>
+            </div>
+            
+            <div id="vaccine-counts">
+            <?php
+              echo "<p>total vaccine count: <span style='color: #EDAA28;'>" . $graph->get_total_count() . "</span></p>";
+              echo "<p>kent vaccine count: <span style='color: #EDAA28;'>" . $graph->get_campus_count("kent") . "</span></p>";
+              echo "<p>stark vaccine count: <span style='color: #EDAA28;'>" . $graph->get_campus_count("stark") . "</span></p>";
+              echo "<p>ashtabula vaccine count: <span style='color: #EDAA28;'>" . $graph->get_campus_count("ashtabula") . "</span></p>";
+              echo "<p>east liverpool vaccine count: <span style='color: #EDAA28;'>" . $graph->get_campus_count("eastliverpool") . "</span></p>";
+              echo "<p>salem vaccine count: <span style='color: #EDAA28;'>" . $graph->get_campus_count("salem") . "</span></p>";
+              echo "<p>geauga vaccine count: <span style='color: #EDAA28;'>" . $graph->get_campus_count("geauga") . "</span></p>";
+              echo "<p>trumbull vaccine count: <span style='color: #EDAA28;'>" . $graph->get_campus_count("trumbull") . "</span></p>";
+              echo "<p>tuscarawas vaccine count: <span style='color: #EDAA28;'>" . $graph->get_campus_count("tuscarawas") . "</span></p>";
+            ?>
+            </div>
+      </div>
       <select  style="margin-left: 200px;" name="campus-graph-select" id="campus-graph-select">
             <option value="total">Total</option>
             <option value="kent">Kent Main Campus</option>
@@ -209,11 +282,21 @@ function getGraph(){
           </select>
           <input type='submit' name='graph-submit' value='submit' onclick="getGraph()">
           <br>
+          
       </div>
-      <div class="row">
+      <br>
+      <div class="" id="payment-totals">
+        <p id="total" class="totals-pay">total</p>
+        <p id="kent" class="totals-pay">kent</p>
+        <p id="stark" class="totals-pay">stark</p>
+        <p id="ashtabula" class="totals-pay">ashtabula</p>
+        <p id="eastliverpool" class="totals-pay">eastliverpool</p>
+        <p id="salem" class="totals-pay">salem</p>
+        <p id="geauga" class="totals-pay">geauga</p>
+        <p id="trumbull" class="totals-pay">trumbull</p>
+        <p id="tuscarawas" class="totals-pay">tuscarawas</p>
       </div>
     </main>
-    <?php echo $total_graph_data; ?>
     <?php
     include_once('../backend/user.php');
   if(isset($_POST['signout'])){

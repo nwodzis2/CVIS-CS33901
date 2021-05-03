@@ -239,9 +239,6 @@ class Campus{
         } //so we know how to divi up vaccines
         
     }
-    function notify_appointments_needed($campus){
-            
-    } //if appointments is < 50% of available appointments per day
 ?>
 
 

@@ -72,6 +72,9 @@
     display: none;
     
 }
+#mission-statement{
+    width: 40%;
+}
 /*****************Mobile*********************/
 @media screen and (max-width: 600px) {
     #kent-logo-nav{
@@ -131,6 +134,9 @@
         width: 150%;
         height: 30px;
         color: white;
+    }
+    #mission-statement{
+        width: 80%;
     }
 }
 /*****************Desktop*********************/
@@ -234,4 +240,24 @@
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.8);
+}
+#campus_vac_chart{
+    margin-left: 20px;
+}
+#vaccine-counts{
+    text-align: center;
+
+}
+#vaccine-counts > p{
+    display: inline-block;
+    font-size: 20px;
+    color: #053B74;
+    padding-right: 20px;
+}
+.totals-pay{
+    display: inline-block;
+    color:#EDAA28;
+    background-color: #053B74;
+    border-radius: 100%;
+    padding: 20px;
 }

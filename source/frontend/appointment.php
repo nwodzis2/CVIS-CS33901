@@ -90,6 +90,35 @@ $user = $_SESSION['user'];
         <div id="time-select" class="col-md-6 apt-centered"></div>
       </div>
     </main>
+    <?php
+include_once("../backend/appointment.php");
+include_once("../backend/user.php");
+if(isset($_POST['apt-submit'])){
+  $DB_link = new DB_Link();
+  $connection = $DB_link->connect("localhost", "cvis");
+  $apt_time = $_POST['timeSelect'];
+  make_appointment($connection, $_SESSION['first'], $_SESSION['last'], $_SESSION['email'], $_SESSION['campus'], $_SESSION['day'], $_SESSION['month'], $apt_time, 0, NULL);
+}
+if(isset($_POST['day'])){
+  echo "hello";
+  update_insurance($connection, $_SESSION['email'], $_SESSION['insurance']);
+  $_SESSION['campus'] = $_POST['campus'];
+  $_SESSION['day'] = $_POST['day'];
+  $_SESSION['month'] = $_POST['month'];include_once("../backend/db.php");
+  //include_once("./appointment.php");
+  $DB_link = new DB_Link();
+  $connection = $DB_link->connect("localhost", "cvis");
+  
+}
+$appointmentArray = [];
+  
+  $datetime = DateTime::createFromFormat('G:i', "8:00");
+  for($i = 0; $i < 60; $i++){
+          array_push($appointmentArray, $datetime->format('G:i'));
+      $datetime->modify('+10 minutes');
+  }
+  $_SESSION['apt-array'] = $appointmentArray;
+?>
   </body>
   <script>
     var campus_ = 'kent';
@@ -114,13 +143,14 @@ document.getElementById('my-calendar').addEventListener('calendar-select', (ev) 
   form1.append("day", myDate.substring(8,9));
   form1.append("month", myDate.substring(5,6));
   form1.append("campus", campus);*/
-  var data_ = { day: formString.substring(8,10), month: formString.substring(5,7), campus: campus_ , insurance: insurance_}
+  var data_ = { "day": formString.substring(8,10), "month": formString.substring(5,7), "campus": campus_ , "insurance": insurance_};
+  var data_2 = "day=" + formString.substring(8,10) + "&month=" + formString.substring(5,7) + "&campus=" + campus_ + "&insurance=" + insurance_;
   $.ajax({
         method: "POST",
-        data: data_,
+        data: 'day=' + formString.substring(8,10) + '&month=' + formString.substring(5,7) + '&campus=' + campus_ + '&insurance=' + insurance_,
         success: fillDates(),
         error: function(){
-                console.log("error")
+                console.log("error: post unsucessful")
             }
     });
     
@@ -132,7 +162,7 @@ document.getElementById('my-calendar').addEventListener('calendar-select', (ev) 
   function fillDates(){
     let dates =
       <?php
-              echo json_encode($_SESSION['apt-array']);
+        echo json_encode($_SESSION['apt-array']);
       ?>;
     var form = document.createElement("Form");
     form.id = "time-select-form";
@@ -156,33 +186,5 @@ document.getElementById('my-calendar').addEventListener('calendar-select', (ev) 
       }
     
 </script>
-<?php
-include_once("../backend/appointment.php");
-include_once("../backend/user.php");
-if(isset($_POST['apt-submit'])){
-  $DB_link = new DB_Link();
-  $connection = $DB_link->connect("localhost", "cvis");
-  $apt_time = $_POST['timeSelect'];
-  make_appointment($connection, $_SESSION['first'], $_SESSION['last'], $_SESSION['email'], $_SESSION['campus'], $_SESSION['day'], $_SESSION['month'], $apt_time, 0, NULL);
-}
-if(isset($_POST['day'])){
-  update_insurance($connection, $_SESSION['email'], $_SESSION['insurance']);
-  $_SESSION['campus'] = $_POST['campus'];
-  $_SESSION['day'] = $_POST['day'];
-  $_SESSION['month'] = $_POST['month'];include_once("../backend/db.php");
-  include_once("./appointment.php");
-  $DB_link = new DB_Link();
-  $connection = $DB_link->connect("localhost", "cvis");
-  $appointmentArray = [];
-  
-  $datetime = DateTime::createFromFormat('G:i', "8:00");
-  for($i = 0; $i < 60; $i++){
-      if(!check_for_appointment_at_time_and_location($connection, $_Session['campus'], $_SESSION['day'], $_SESSION['month'], $datetime->format('G:i'))){
-          array_push($appointmentArray, $datetime->format('G:i'));
-      }
-      $datetime->modify('+10 minutes');
-  }
-  $_SESSION['apt-array'] = $appointmentArray;
-}
-?>
+
 </html>
