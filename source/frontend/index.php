@@ -12,6 +12,14 @@ $user = $_SESSION['user'];
 include_once("../backend/graphs.php");
 $graph = new vaccineGraph();
 $total_graph_data = $graph->get_campus_data("stark");
+
+//add to every page at top, this is the name that you click for active user
+$user = $_SESSION['user'];
+    echo "<div class='above-nav'>";
+    echo "Signed in as <strong>" . '<a href="user_details.php">'.$user ."</a> </strong>";
+    echo "</div>";
+//end active user
+
 ?>
 <html>
 
@@ -30,7 +38,7 @@ $total_graph_data = $graph->get_campus_data("stark");
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link href="/fontawesome-free-5.15.3-web/css/all.css" rel="stylesheet"> <!--load all styles -->
     <link rel="stylesheet" href="css/CVIS.css?v=<?php echo time(); ?>">
-    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <link rel="stylesheet" type="text/css" href="css/index.css?v=<?php echo time(); ?>">
     
   </head>
   <body>

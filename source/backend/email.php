@@ -1,10 +1,8 @@
 <?php
-
-
 include("../Libraries/PHPMailer/PHPMailer.php");
 include("../Libraries/PHPMailer/SMTP.php");
 
-function email($address, $subject, $body){
+function send_email($address, $subject, $body){
 
     $mail = new PHPMailer\PHPMailer\PHPMailer();
     $mail->IsSMTP(); 
@@ -17,9 +15,9 @@ function email($address, $subject, $body){
     
     //sender email address and password.
     //must turn on "less secure app access" on sender account.
-    $mail->Username = "sender email address";
-    $mail->Password = "password";
-    $mail->SetFrom("sender email address");
+    $mail->Username = "HealthServicesCVIS@gmail.com";
+    $mail->Password = "ssap4321";
+    $mail->SetFrom("HealthServicesCVIS@gmail.com");
     
     $mail->Subject = $subject;
     $mail->Body = $body;
@@ -28,6 +26,8 @@ function email($address, $subject, $body){
      if(!$mail->Send()) {
          echo "email failed to send";
      }
+     
+     
      
 }
 
