@@ -89,7 +89,6 @@
             return $this->a_giver;
         }
     }
-    //returns a list of appointments at a campus, on a certain day... can be used to print the entire list of students at a campus on a day
     function get_appointments_by_campus($connection, $campus, $day, $month){
         $sql = "SELECT * FROM appointments WHERE campus = '$campus' AND day = '$day' AND month = '$month'";
 
@@ -121,12 +120,28 @@
                 array_push($appointments_by_campus, $appointment);
             }
         }
-        //the following can be used to print out the email of each user at the campus with a time at it, on a certain date.
-        echo "<h1>" . $campus . "</h1>";
+        
+        $blank_times = [
+        "-","-","-","-","-",
+        "-","-","-","-","-","-",
+        "-","-","-","-","-","-",
+        "-","-","-","-","-","-",
+        "-","-","-","-","-","-",
+        "-","-","-","-","-","-",
+        "-","-","-","-","-","-",
+        "-","-","-","-","-","-",
+        "-","-","-","-","-","-",
+        "-","-","-","-","-","-",
+        ];
+        
+        $time = array();
         foreach($appointments_by_campus as $appointment){
-            echo "name = " . $appointment->get_fname() . " " . $appointment->get_lname() . " time = " . $appointment->get_time_of() . " on = " . $appointment->get_month() . "/" . $appointment->get_day(); 
-            echo "<br>";
+            $time[$appointment->get_time_of()] = $appointment->get_email();
+            $spot = get_location($appointment->get_time_of());
+            $blank_times[$spot] = $appointment->get_email();
         }
+        return $blank_times;
+    }
     
     }
     //checks by user_email if a person has an appointment
