@@ -4,22 +4,22 @@ session_start();
     if(!$_SESSION['authenticated']){
         header("location: ./login.php");
 }
-$user = $_SESSION['user'];
-$kent = "@kent.edu";
-$f_email = $user.$kent;
+//pain
+error_reporting(0);
 
 ?>
 <?php
+include_once("../backend/appointment.php");
 include_once("../backend/db.php");
+include_once("../backend/avail.php");
 include_once("../backend/user.php");
 
-$DB_link = new DB_Link();
-$connection = $DB_link->connect("localhost", "CVIS");
-
-//email should come from the session
-$user_stuff = get_user_details_by_email($connection, $f_email);
-
-
+//add to every page at top, this is the name that you click for active user
+$user = $_SESSION['user'];
+    echo "<div class='above-nav'>";
+    echo 'Signed in as <strong><a href="user_details.php">'.$user ."</a> </strong>";
+    echo "</div>";
+//end active user
 
 ?>
 <html>
@@ -27,7 +27,7 @@ $user_stuff = get_user_details_by_email($connection, $f_email);
   <head>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
-    <script src="./js/main.js"></script>
+
     <meta charset="utf-8">
     <title><?php if($_SESSION['authenticated']){echo ucfirst($_SESSION['user']); echo "'s ";} ?>CVIS Dashboard</title>
         <link rel="shortcut icon" href="./images/favicon.ico">
@@ -40,7 +40,11 @@ $user_stuff = get_user_details_by_email($connection, $f_email);
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
         <link href="/fontawesome-free-5.15.3-web/css/all.css" rel="stylesheet"> <!--load all styles -->
         <link rel="stylesheet" href="css/CVIS.css?v=<?php echo time(); ?>">
+        <link rel="stylesheet" type="text/css" href="css/index.css?v=<?php echo time(); ?>">
         <link rel="stylesheet" type="text/css" href="user_details.css?v=<?php echo time(); ?>">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js" ></script>
+        <link rel="stylesheet" href="./dist/tavo-calendar.css" />
+        <script src="./dist/tavo-calendar.js"></script>
     
   </head>
   <body>
@@ -58,55 +62,27 @@ $user_stuff = get_user_details_by_email($connection, $f_email);
                 <li><a href="admin.php">Admin</a></li>
             </ol>
         </nav>
-        
+
     </header>
     <!--- End of navbar --->
-<div class="container">
-    <div class="row">
-        <div class="col-sm-4"></div>
-        <div class="col-sm-4">
-        <h1><center>User Details<center></h1>
-        
-        <?php    
-        $user_stuff = get_user_details_by_email($connection, $f_email);
-        ?>
-        <div class="panel panel-info ">
-            <div class="panel-heading"><center><strong>User information</strong></center></div>
-            <div class="panel-body"><strong>ID: </strong><?php echo $user_stuff->get_u_id(); ?></div>
-            <div class="panel-body"><strong>Email: </strong><?php echo $user_stuff->get_u_email(); ?></div>
-            <div class="panel-body"><strong>Appointment One: </strong><?php echo $user_stuff->get_u_ap1(); ?></div>
-            <div class="panel-body"><strong>Appointment Two: </strong><?php echo $user_stuff->get_u_ap2(); ?></div>
-            <div class="panel-body"><strong>Vaccine Type: </strong><?php $vac = $user_stuff->get_u_vaccine_type(); 
-            if($vac === 1){
-                echo "Pfizer";
-            }elseif($vac === 2){
-                echo "Moderna";
-            }else{
-                echo "Johnson&Johnson";
-            }
-            ?></div>
-            <div class="panel-body"><strong>Fully Vaccinated: </strong><?php $vaccinated = $user_stuff->get_u_vaccinated(); 
-            if($vaccinated === 1){
-                echo "Yes";
-            }else{
-                echo "No";
-            }      
-            ?></div>
-            <div class="panel-body"><strong>Has Insurance </strong><?php $insurance = $user_stuff->get_u_has_insurance();
-            if($insurance === 1){
-                echo "Yes";
-            }else{
-                echo "No";
-            }
-            ?></div>
-        </div>
-        
-        
-        </div>
-        <div class="col-sm-4"></div>
-    </div>
-</div>
     
-    
+
+    <p>Enter a day and month to complete all appointments for</p>
+    <form method="post">
+      <label for="day">Day</label>
+      <input type="text" id="day" name="day">
+      <label for="month">Month</label>
+      <input type="text" id="month" name="month">
+      <input type="submit" value="Complete" name="com">
+    </form>
+    <br>
+    <p>Enter a day and month to un-complete all appointments for</p>
+    <form method="post">
+      <label for="day">Day</label>
+      <input type="text" id="day" name="day">
+      <label for="month">Month</label>
+      <input type="text" id="month" name="month">
+      <input type="submit" value="Un-complete" name="uncom">
+    </form>
   </body>
 </html>

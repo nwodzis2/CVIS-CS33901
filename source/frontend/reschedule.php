@@ -3,13 +3,6 @@
       if(!$_SESSION['authenticated']){
         header("location: ./login.php");
       }
-      
-//add to every page at top, this is the name that you click for active user
-$user = $_SESSION['user'];
-    echo "<div class='above-nav'>";
-    echo 'Signed in as <strong><a href="user_details.php">'.$user ."</a> </strong>";
-    echo "</div>";
-//end active user
 ?>
 <html>
 
@@ -30,7 +23,6 @@ $user = $_SESSION['user'];
     <link rel="stylesheet" href="css/CVIS.css?v=<?php echo time(); ?>">
     <script   src="https://code.jquery.com/jquery-3.6.0.js"   integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="   crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js" ></script>
-    <link rel="stylesheet" type="text/css" href="css/index.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="./dist/tavo-calendar.css" />
     <script src="./dist/tavo-calendar.js"></script>
 
@@ -57,13 +49,14 @@ $user = $_SESSION['user'];
     <nav class="navbar navbar-default navbar-static-top">
   <div class="container">
     <ul class="nav navbar-nav">
-      <li class="active"><a href="#">Schedule Appointment <span class="sr-only">(current)</span></a></li>
-      <li><a href="reschedule.php">Reschedule Appointment</a></li>
+      <li ><a href="appointment.php">Schedule Appointment </a></li>
+      <li class="active"><a href="reschedule.php">Reschedule Appointment<span class="sr-only">(current)</span></a></li>
       <li><a href="cancel.php">Cancel Appointment</a></li>
     </ul>
   </div>
 </nav>
-      <h1>Schedule Appointment</h1>
+      <h1>Reschedule Appointment</h1>
+      <p>Make a new appointment and your last will automatically be canceled</p>
       <div class="row">
         <div class="col-md-6">
           <div id='campus-select-cont'>
@@ -157,7 +150,7 @@ if(isset($_POST['apt-submit'])){
   $DB_link = new DB_Link();
   $connection = $DB_link->connect("localhost", "cvis");
   $apt_time = $_POST['timeSelect'];
-  make_appointment($connection, $_SESSION['first'], $_SESSION['last'], $_SESSION['email'], $_SESSION['campus'], $_SESSION['day'], $_SESSION['month'], $apt_time, 0, NULL);
+  reschedule_appointment($connection, $_SESSION['email'], $_SESSION['campus'], $_SESSION['day'], $_SESSION['month'], $apt_time, NULL);
 }
 if(isset($_POST['day'])){
   

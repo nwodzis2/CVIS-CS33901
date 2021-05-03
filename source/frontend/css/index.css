@@ -1,0 +1,14 @@
+.above-nav {
+    background-color: #053b74;
+    color: white;
+    text-align: right;
+    padding-right: 10px;
+}
+
+a {
+    color: #edaa28;
+}
+
+a:hover {
+    color: white;
+}
