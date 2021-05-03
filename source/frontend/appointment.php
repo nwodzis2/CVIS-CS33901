@@ -3,6 +3,13 @@
       if(!$_SESSION['authenticated']){
         header("location: ./login.php");
       }
+      
+//add to every page at top, this is the name that you click for active user
+$user = $_SESSION['user'];
+    echo "<div class='above-nav'>";
+    echo 'Signed in as <strong><a href="user_details.php">'.$user ."</a> </strong>";
+    echo "</div>";
+//end active user
 ?>
 <html>
 
@@ -23,6 +30,7 @@
     <link rel="stylesheet" href="css/CVIS.css?v=<?php echo time(); ?>">
     <script   src="https://code.jquery.com/jquery-3.6.0.js"   integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="   crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js" ></script>
+    <link rel="stylesheet" type="text/css" href="css/index.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" href="./dist/tavo-calendar.css" />
     <script src="./dist/tavo-calendar.js"></script>
 

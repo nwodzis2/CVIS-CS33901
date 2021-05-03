@@ -143,7 +143,6 @@
         return $blank_times;
     }
     
-    }
     //checks by user_email if a person has an appointment
     function has_appointment($connection, $user_email){
         $sql = "SELECT * FROM appointments WHERE user_email = '$user_email'";
