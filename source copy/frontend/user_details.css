@@ -1,0 +1,16 @@
+.panel-info >.panel-heading
+{
+    background: #053b74;
+    color: white;
+}
+
+.panel-info{
+    border-color: #053b74;
+}
+/* It was frying my eyes as full white */
+body {
+    background: #f8f8f8;
+
+}
+
+
