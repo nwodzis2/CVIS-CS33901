@@ -130,7 +130,10 @@ document.getElementById('my-calendar').addEventListener('calendar-select', (ev) 
   document.getElementById('campus-select').addEventListener("change", useCampus, false); 
   document.getElementById('insurance').addEventListener("change", useCampus, false);
   function fillDates(){
-    let dates = <?php echo json_encode($_SESSION['apt-array']); ?>;
+    let dates =
+      <?php
+              echo json_encode($_SESSION['apt-array']);
+      ?>;
     var form = document.createElement("Form");
     form.id = "time-select-form";
     form.method = "post";
