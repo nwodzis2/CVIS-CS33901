@@ -20,10 +20,19 @@ $user = $_SESSION['user'];
     echo "</div>";
 //end active user
 
+$total_graph_data = $graph->get_total_data();
+$stark_graph_data = $graph->get_campus_data("stark");
+$ashtabula_graph_data = $graph->get_campus_data("ashtabula");
+$eastliverpool_graph_data = $graph->get_campus_data("eastliverpool");
+$salem_graph_data = $graph->get_campus_data("salem");
+$geauga_graph_data = $graph->get_campus_data("geauga");
+$trumbull_graph_data = $graph->get_campus_data("trumbul");
+$tuscarawas_graph_data = $graph->get_campus_data("tuscarawas");
 ?>
 <html>
 
   <head>
+
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://unpkg.com/lightweight-charts/dist/lightweight-charts.standalone.production.js"></script>
     <script src="./js/main.js"></script>
@@ -38,7 +47,8 @@ $user = $_SESSION['user'];
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link href="/fontawesome-free-5.15.3-web/css/all.css" rel="stylesheet"> <!--load all styles -->
     <link rel="stylesheet" href="css/CVIS.css?v=<?php echo time(); ?>">
-    <link rel="stylesheet" type="text/css" href="css/index.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <script   src="https://code.jquery.com/jquery-3.6.0.js"   integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="   crossorigin="anonymous"></script>
     
   </head>
   <body>
@@ -50,7 +60,7 @@ if(window.attachEvent) {
         var curronload = window.onload;
         var newonload = function(evt) {
             curronload(evt);
-            createCHarts(evt);
+            createCharts(evt);
         };
         window.onload = newonload;
     } else {
@@ -59,8 +69,11 @@ if(window.attachEvent) {
 }
 
 function createCharts(){ //using trading views charts
+  
+  
+  var value = document.getElementById('campus-graph-select').value;
   var chartElement = document.createElement('div');
-  chartElement.className = "col-md-6";
+  chartElement.className = "col-md-6 campus_vac_chart";
   chartElement.id = "campus_vac_chart";
   var row1 = document.getElementById('row-1');
   row1.appendChild(chartElement);
@@ -78,7 +91,7 @@ function createCharts(){ //using trading views charts
     },
   });
   
-  row1.appendChild(chartElement);
+  //row1.appendChild(chartElement);
 
   var areaSeries = campusChart.addAreaSeries({
     topColor: 'rgba(33, 150, 243, 0.56)',
@@ -86,12 +99,68 @@ function createCharts(){ //using trading views charts
     lineColor: 'rgba(33, 150, 243, 1)',
     lineWidth: 2,
 });
-areaSeries.setData([
-  <?php echo $total_graph_data; ?>
-]);
-
+switch(value){
+    case "total":
+      areaSeries.setData([
+    <?php echo $total_graph_data; ?>
+    ]);
+      break;
+    case "kent":
+      areaSeries.setData([
+    <?php echo $kent_graph_data; ?>
+    ]);
+      break;
+    case "stark":
+      areaSeries.setData([
+    <?php echo $stark_graph_data; ?>
+    ]);
+      break;
+    case "ashtabula":
+      areaSeries.setData([
+    <?php echo $ashtabula_graph_data; ?>
+    ]);
+      break;
+    case "eastliverpool":
+      areaSeries.setData([
+    <?php echo $eastliverpool_graph_data; ?>
+    ]);
+      break;
+    case "salem":
+      areaSeries.setData([
+    <?php echo $salem_graph_data; ?>
+    ]);
+      break;
+    case "geauga":
+      areaSeries.setData([
+    <?php echo $geauga_graph_data; ?>
+    ]);
+      break;
+    case "trumbull":
+      areaSeries.setData([
+    <?php echo $trumbull_graph_data; ?>
+    ]);
+      break;
+    case "tuscarawas":
+      areaSeries.setData([
+    <?php echo $tuscarawas_graph_data; ?>
+    ]);
+      break;
+    default:
+      areaSeries.setData([
+    <?php echo $total_graph_data; ?>
+    ]);
+    break
+  }
 }
-
+var i = 0;
+function getGraph(){
+  
+  if(i > 1){
+    $("#row-1").empty();
+    i++;
+  }
+  createCharts();
+}
 
   </script>
   
@@ -114,7 +183,20 @@ areaSeries.setData([
     
     <main>
       <h1>CVIS DASHBOARD</h1>
-      <div id="row-1" class="row">
+      <div id="row-1" class="row row-1">
+      <select  style="margin-left: 200px;" name="campus-graph-select" id="campus-graph-select">
+            <option value="total">Total</option>
+            <option value="kent">Kent Main Campus</option>
+            <option value="stark">Stark Campus</option>
+            <option value="ashtabula">Ashtabula Campus</option>
+            <option value="eastliverpool">East Liverpool Campus</option>
+            <option value="salem">Salem Campus</option>
+            <option value="geauga">Geauga Campus</option>
+            <option value="trumbull">Trumbull Campus</option>
+            <option value="tuscarawas">Tuscarawas Campus</option>
+          </select>
+          <input type='submit' name='graph-submit' value='submit' onclick="getGraph()">
+          <br>
       </div>
       <div class="row">
       </div>
