@@ -191,21 +191,46 @@ class Campus{
                 echo "query failed";
             }
         } //everytime an appointment is completed it removes 1 from the db table
-        public function make_request($campus){
-            
+        public function make_request($doses_requested){
+            if($this->c_doses_on_hand < 50){
+                $request = rand(0, 1);
+                if($request){
+                    $this->update_doses($doses_requested);
+                }
+                return $request;
+            }
+            else if($this->c_name == 'kent' && $this->c_doses_on_hand < 50){
+                $request = rand(0, 1);
+                if($request){
+                    $this->update_doses($doses_requested);
+                }
+                return $request;
+            }
+            else{
+                return 0;
+            }
         } //request to get more doses at a campus
-        public function update_doses($campus){
-            
+        public function update_doses($doses_requested){
+            $sql = "UPDATE campus SET doses_on_hand = (doses_on_hand + $doses_requested) WHERE campus_name = $this->c_name";
+        
+            $stmt = $this->connection->prepare($sql);
+        
+            $stmt->execute();
+        
+            $result = $stmt->get_result();
+            if(!$result){
+                echo "query failed";
+            }
         } //idk somehow answers the request function
         public function get_vaccine_type($campus){
-            
+            return 1;
         } //returns the vaccine type being given at a campus
         public function get_revenue(){
             return $this->c_revenue;
         }
         public function increase_revenue(){
-            $this->c_revenue = $this->c_revenue + 1;
-            $sql = "UPDATE campus SET revenue = (revenue + 1) WHERE campus_name = $this->c_name";
+            $this->c_revenue = $this->c_revenue + 120;
+            $sql = "UPDATE campus SET revenue = (revenue + 120) WHERE campus_name = $this->c_name";
         
             $stmt = $this->connection->prepare($sql);
         
@@ -217,17 +242,14 @@ class Campus{
             }
         } //These 3 just do as expected on the db column "revenue" under each campus.
         public function decrease_revenue(){
-            $this->c_revenue = $this->c_revenue - 1;
-            $sql = "UPDATE campus SET revenue = (revenue - 1) WHERE campus_name = $this->c_name";
+            $this->c_revenue = $this->c_revenue - 20;
+            $sql = "UPDATE campus SET revenue = (revenue - 20) WHERE campus_name = '$this->c_name'";
         
             $stmt = $this->connection->prepare($sql);
         
             $stmt->execute();
         
             $result = $stmt->get_result();
-            if(!$result){
-                echo "query failed";
-            }
         }
         public function is_regional(){
             if($this->c_regional){
@@ -237,7 +259,7 @@ class Campus{
                 return false;
             }
         } //so we know how to divi up vaccines
-        
+
     }
 ?>
 

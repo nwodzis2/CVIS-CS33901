@@ -93,14 +93,23 @@ $user = $_SESSION['user'];
     <?php
 include_once("../backend/appointment.php");
 include_once("../backend/user.php");
+include_once("../backend/campus.php");
 if(isset($_POST['apt-submit'])){
   $DB_link = new DB_Link();
   $connection = $DB_link->connect("localhost", "cvis");
   $apt_time = $_POST['timeSelect'];
   make_appointment($connection, $_SESSION['first'], $_SESSION['last'], $_SESSION['email'], $_SESSION['campus'], $_SESSION['day'], $_SESSION['month'], $apt_time, 0, NULL);
+  $myCampus = new Campus();
+  $myCampus->load_by_name($_SESSION['campus']);
+  if($_POST['insurance'] == "true"){
+    $myCampus->increase_revenue();
+  }
+  else{
+    $myCampus->decrease_revenue();
+  }
+  
 }
 if(isset($_POST['day'])){
-  echo "hello";
   update_insurance($connection, $_SESSION['email'], $_SESSION['insurance']);
   $_SESSION['campus'] = $_POST['campus'];
   $_SESSION['day'] = $_POST['day'];

@@ -2,8 +2,6 @@
 
 //Made by Jaden Kandel Spring Semester 2021 for Software Engineering
     include_once("../backend/db.php");
-    
-
     $DB_link = new DB_Link();
     $connection = $DB_link->connect("localhost", "cvis");
     /*$appointmentArray = [];
@@ -219,6 +217,13 @@
                 $result = $stmt->get_result();
                 echo "your appointment has been scheduled!";
                 echo "<br>";
+                $sql = "UPDATE campus SET doses_on_hand = (doses_on_hand - 1) WHERE campus_name = '$campus'";
+        
+                $stmt = $connection->prepare($sql);
+            
+                $stmt->execute();
+            
+                $result = $stmt->get_result();
             }
         } 
     }
@@ -237,7 +242,6 @@
             $result = $stmt->get_result();
             echo "Your appointment has been cancelled!";
             echo "<br>";
-            
         }
     }
     function reschedule_appointment($connection, $user_email, $new_campus, $new_day, $new_month, $new_time_of, $new_vaccine_giver){

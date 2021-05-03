@@ -257,6 +257,7 @@ function getGraph(){
             
             <div id="vaccine-counts">
             <?php
+            
               echo "<p>total vaccine count: <span style='color: #EDAA28;'>" . $graph->get_total_count() . "</span></p>";
               echo "<p>kent vaccine count: <span style='color: #EDAA28;'>" . $graph->get_campus_count("kent") . "</span></p>";
               echo "<p>stark vaccine count: <span style='color: #EDAA28;'>" . $graph->get_campus_count("stark") . "</span></p>";
