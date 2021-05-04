@@ -141,6 +141,7 @@ class Campus{
             return $this->c_regional;
         }
         public function get_c_doses_on_hand(){
+            $this->update_doses_db();
             return $this->c_doses_on_hand;
         }
     //*********Workers
@@ -225,6 +226,21 @@ class Campus{
             }
             
         }
+        private function update_doses_db(){
+            $sql = "SELECT * FROM Appointments WHERE campus = '$this->c_name' AND completed = 1";
+            $stmt = $this->connection->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if(!$result){
+                echo "error could not get appointment from db";
+            }
+            else{
+                while($row = mysqli_fetch_assoc($result)){
+                    
+                    $this->update_doses(-1);
+                }
+            }
+        }
         public function make_request($doses_requested){
             if($this->c_doses_on_hand < 50){
                 $request = rand(0, 1);
@@ -245,6 +261,7 @@ class Campus{
             }
         } //request to get more doses at a campus
         public function update_doses($doses_requested){
+            $this->c_doses_on_hand = $this->c_doses_on_hand + $doses_requested;
             $sql = "UPDATE campus SET doses_on_hand = (doses_on_hand + $doses_requested) WHERE campus_name = $this->c_name";
         
             $stmt = $this->connection->prepare($sql);
