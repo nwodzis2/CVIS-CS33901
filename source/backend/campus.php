@@ -132,16 +132,16 @@ class Campus{
         public function get_c_vaccinated(){
             return $this->c_vaccinated;
         }
-        public function get_c_revenue($day, $month){
-            $this->update_revenue($day, $month);
+        public function get_c_revenue(){
+            $this->update_revenue();
             return $this->c_revenue;
             
         }
         public function get_c_regional(){
             return $this->c_regional;
         }
-        public function get_c_doses_on_hand($day, $month){
-            $this->update_doses_db($day, $month);
+        public function get_c_doses_on_hand(){
+            $this->update_doses_db();
             return $this->c_doses_on_hand;
         }
     //*********Workers
@@ -194,8 +194,8 @@ class Campus{
                 echo "query failed";
             }
         } //everytime an appointment is completed it removes 1 from the db table
-        private function update_revenue($day, $month){
-            $sql = "SELECT * FROM Appointments WHERE campus = '$this->c_name' AND completed = 1 AND day= '$day' AND month = '$month'";
+        private function update_revenue(){
+            $sql = "SELECT * FROM Appointments WHERE campus = '$this->c_name' AND completed = 1";
             $stmt = $this->connection->prepare($sql);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -226,8 +226,8 @@ class Campus{
             }
             
         }
-        private function update_doses_db($day, $month){
-            $sql = "SELECT * FROM Appointments WHERE campus = '$this->c_name' AND completed = 1 AND day ='$day' AND month ='$month'";
+        private function update_doses_db(){
+            $sql = "SELECT * FROM Appointments WHERE campus = '$this->c_name' AND completed = 1";
             $stmt = $this->connection->prepare($sql);
             $stmt->execute();
             $result = $stmt->get_result();
@@ -288,7 +288,7 @@ class Campus{
         }
         public function increase_revenue(){
             $this->c_revenue = $this->c_revenue + 120;
-            $sql = "UPDATE campus SET revenue = (revenue + 120) WHERE campus_name = $this->c_name";
+            $sql = "UPDATE campus SET revenue = (revenue + 120) WHERE campus_name = '$this->c_name'";
         
             $stmt = $this->connection->prepare($sql);
         
