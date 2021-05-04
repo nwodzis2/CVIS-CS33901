@@ -68,7 +68,7 @@ $user = $_SESSION['user'];
         <div class="col-md-6">
           <div id='campus-select-cont'>
             <br>
-        <input type="checkbox" id="insurance" name="insurance" value="true">
+        <input class="myCheckBox" type="checkbox" id="insurance" name="insurance" value="1">
         <label for="insurance"> I have insurance</label><br>
           <label for="campus-select">Choose a campus:</label>
           <select name="campus-select" id="campus-select">
@@ -99,18 +99,13 @@ if(isset($_POST['apt-submit'])){
   $connection = $DB_link->connect("localhost", "cvis");
   $apt_time = $_POST['timeSelect'];
   make_appointment($connection, $_SESSION['first'], $_SESSION['last'], $_SESSION['email'], $_SESSION['campus'], $_SESSION['day'], $_SESSION['month'], $apt_time, 0, NULL);
-  $myCampus = new Campus();
+  update_insurance($connection, $_SESSION['email'], $_SESSION['insurance']);
+  /*$myCampus = new Campus();
   $myCampus->load_by_name($_SESSION['campus']);
-  if($_POST['insurance'] == "true"){
-    $myCampus->increase_revenue();
-  }
-  else{
-    $myCampus->decrease_revenue();
-  }
-  
+  */
 }
 if(isset($_POST['day'])){
-  update_insurance($connection, $_SESSION['email'], $_SESSION['insurance']);
+  $_SESSION['insurance'] = $_POST['insurance'];
   $_SESSION['campus'] = $_POST['campus'];
   $_SESSION['day'] = $_POST['day'];
   $_SESSION['month'] = $_POST['month'];include_once("../backend/db.php");
@@ -131,7 +126,7 @@ $appointmentArray = [];
   </body>
   <script>
     var campus_ = 'kent';
-    var insurance_ = false;
+    var insurance_ = 0;
     //not my (Nathan Wodzisz) calendar, using personally modified Tavo Calendar
 const myCalendar = new TavoCalendar('#my-calendar', {
       date: "<?php echo date("Y-m-d");?>",
@@ -142,9 +137,10 @@ const myCalendar = new TavoCalendar('#my-calendar', {
 })
 function useCampus(){
       campus_ = document.getElementById('campus-select').value;
-      insurance_ = document.getElementById('insurance').value;
+      
   }
 document.getElementById('my-calendar').addEventListener('calendar-select', (ev) => {
+  insurance_ = $('.myCheckBox:checked').val();
   var formString = myCalendar.getSelected().toString();
   /*var form1 = new FormData();
   let myDate = myCalendar;
@@ -167,7 +163,6 @@ document.getElementById('my-calendar').addEventListener('calendar-select', (ev) 
     somedataday = formString.substring(8,10);
   }
   var data_ = { "day": somedataday, "month": somedata, "campus": campus_ , "insurance": insurance_};
-
   var data_2 = "day=" + formString.substring(8,10) + "&month=" + formString.substring(5,7) + "&campus=" + campus_ + "&insurance=" + insurance_;
   $.ajax({
         method: "POST",
@@ -182,7 +177,6 @@ document.getElementById('my-calendar').addEventListener('calendar-select', (ev) 
     //posting.done(fillDates());
   })
   document.getElementById('campus-select').addEventListener("change", useCampus, false); 
-  document.getElementById('insurance').addEventListener("change", useCampus, false);
   function fillDates(){
     let dates =
       <?php
