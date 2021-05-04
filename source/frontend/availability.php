@@ -5,7 +5,7 @@ session_start();
         header("location: ./login.php");
 }
 //pain
-//error_reporting(0);
+error_reporting(0);
 
 ?>
 <?php

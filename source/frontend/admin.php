@@ -1,11 +1,46 @@
 <?php 
+
+
 //Created by Jaden Kandel Spring Semester 2021
 session_start();
     if(!$_SESSION['authenticated']){
         header("location: ./login.php");
 }
-//pain
-error_reporting(0);
+
+include_once("../backend/campus.php");
+$starkCampus = Campus::with_name('stark');
+$s_revenue = $starkCampus->get_c_revenue(5,6);
+$s_doses = $starkCampus->get_c_doses_on_hand(5,6);
+//kent main
+$k = Campus::with_name('kent');
+$k_revenue = $k->get_c_revenue();
+$k_doses = $k->get_c_doses_on_hand();
+
+//ashtabula
+$a = Campus::with_name('ashtabula');
+$a_revenue = $a->get_c_revenue();
+$a_doses = $a->get_c_doses_on_hand();
+
+$el = Campus::with_name('east liverpool');
+$el_revenue = $el->get_c_revenue();
+$el_doses = $el->get_c_doses_on_hand();
+
+$sa = Campus::with_name('salem');
+$sa_revenue = $sa->get_c_revenue();
+$sa_doses = $sa->get_c_doses_on_hand();
+
+$g = Campus::with_name('geauga');
+$g_revenue = $g->get_c_revenue();
+$g_doses = $g->get_c_doses_on_hand();
+
+$tr = Campus::with_name('trumbull');
+$tr_revenue = $tr->get_c_revenue();
+$tr_doses = $tr->get_c_doses_on_hand();
+
+$t = Campus::with_name('tuscarawas');
+$t_revenue = $t->get_c_revenue();
+$t_doses = $t->get_c_doses_on_hand();
+  
 
 ?>
 <?php
@@ -13,6 +48,7 @@ include_once("../backend/appointment.php");
 include_once("../backend/db.php");
 include_once("../backend/avail.php");
 include_once("../backend/user.php");
+include_once("../backend/administration.php");
 
 //add to every page at top, this is the name that you click for active user
 $user = $_SESSION['user'];
@@ -66,7 +102,7 @@ $user = $_SESSION['user'];
     </header>
     <!--- End of navbar --->
     
-
+<center>
     <p>Enter a day and month to complete all appointments for</p>
     <form method="post">
       <label for="day">Day</label>
@@ -75,14 +111,69 @@ $user = $_SESSION['user'];
       <input type="text" id="month" name="month">
       <input type="submit" value="Complete" name="com">
     </form>
-    <br>
-    <p>Enter a day and month to un-complete all appointments for</p>
-    <form method="post">
-      <label for="day">Day</label>
-      <input type="text" id="day" name="day">
-      <label for="month">Month</label>
-      <input type="text" id="month" name="month">
-      <input type="submit" value="Un-complete" name="uncom">
-    </form>
+</center>
+    <?php 
+    if(isset($_POST['com'], $_POST['day'], $_POST['month'] )){
+    $d = $_POST['day'];
+    $m = $_POST['month'];
+    complete_appointments_on_day($connection, $m, $d);
+    }
+    ?>
+
+<style>
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 5px;
+  text-align: left;
+}
+</style>
+<center>
+<table>
+      <tr>
+        <th>Kent</th>
+        <th><?php echo $k_revenue; ?></th>
+        <th><?php echo $k_doses; ?></th>
+      </tr>
+      <tr>
+        <th>Stark</th>
+        <th><?php echo $s_revenue; ?></th>
+        <th><?php echo $s_doses; ?></th>
+      </tr>
+      <tr>
+        <th>Ashtabula</th>
+        <th><?php echo $a_revenue; ?></th>
+        <th><?php echo $a_doses; ?></th>
+      </tr>
+      <tr>
+        <th>East Liverpool</th>
+        <th><?php echo $el_revenue; ?></th>
+        <th><?php echo $el_doses; ?></th>
+      </tr>
+      <tr>
+        <th>Salem</th>
+        <th><?php echo $sa_revenue; ?></th>
+        <th><?php echo $sa_doses; ?></th>
+      </tr>
+      <tr>
+        <th>Geauga</th>
+        <th><?php echo $g_revenue; ?></th>
+        <th><?php echo $g_doses; ?></th>
+      </tr>
+      <tr>
+        <th>Trumbull</th>
+        <th><?php echo $tr_revenue; ?></th>
+        <th><?php echo $tr_doses; ?></th>
+      </tr>
+      <tr>
+        <th>Tuscarawas</th>
+        <th><?php echo $t_revenue; ?></th>
+        <th><?php echo $t_doses; ?></th>
+      </tr>
+</table>
+</center>
+      
   </body>
 </html>
