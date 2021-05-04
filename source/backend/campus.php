@@ -133,7 +133,9 @@ class Campus{
             return $this->c_vaccinated;
         }
         public function get_c_revenue(){
+            $this->update_revenue();
             return $this->c_revenue;
+            
         }
         public function get_c_regional(){
             return $this->c_regional;
@@ -191,6 +193,38 @@ class Campus{
                 echo "query failed";
             }
         } //everytime an appointment is completed it removes 1 from the db table
+        private function update_revenue(){
+            $sql = "SELECT * FROM Appointments WHERE campus = '$this->c_name' AND completed = 1";
+            $stmt = $this->connection->prepare($sql);
+            $stmt->execute();
+            $result = $stmt->get_result();
+            if(!$result){
+                echo "error could not get appointment from db";
+            }
+            else{
+                while($row = mysqli_fetch_assoc($result)){
+                    $theEmail = $row['user_email'];
+                    $sql = "SELECT * FROM PatientDetails WHERE campus = '$theEmail'";
+                    $stmt = $this->connection->prepare($sql);
+                    $stmt->execute();
+                    $result = $stmt->get_result();
+                    if(!$result){
+                        echo "error could not get patient from db";
+                    }
+                    else{
+                        $row2 = mysqli_fetch_assoc($result);
+                        if($row2['has_insurance']){
+                            $this->increase_revenue();
+                        }
+                        else{
+                            $this->decrease_revenue();
+                        }
+                    }
+                    
+                }
+            }
+            
+        }
         public function make_request($doses_requested){
             if($this->c_doses_on_hand < 50){
                 $request = rand(0, 1);

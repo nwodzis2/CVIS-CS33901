@@ -23,7 +23,7 @@ class paymentGraph extends graph{
         
     }
     public function get_campus_data($campus){
-
+        
     }
 }
 class vaccineGraph extends graph{

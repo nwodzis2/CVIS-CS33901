@@ -233,7 +233,7 @@ function getGraph(){
     <header id="header-main">
       <img id="kent-logo-nav" src="./images/kent-logo.png" alt=""> <!--From kent state's website, property of kent state. Using for educational purpose only-->
       <span id="ksu-hs-logo-nav-span"><img id="ksu-hs-logo-nav" src="./images/ksu-hs-logo.png" alt=""></span>
-      <span id="fa-sign-out-alt-span"><a href="javascript:void(0);" onclick="signOut()"><i id="sign-out-nav" class="fas fa-sign-out-alt"></i></a></span>
+      <span id="fa-sign-out-alt-span"><a href="./login.php" ><i onclick="signOut()" id="sign-out-nav" class="fas fa-sign-out-alt"></i></a></span>
       <span id="fa-bar-span"><a href="javascript:void(0);" onclick="openLogin()"><i class="fas fa-bars"></i></a></span>
         <nav id="nav-main">
             <ol>

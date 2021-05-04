@@ -1,4 +1,5 @@
 <?php
+session_start();
 /* 
 Created by Jaden Kandel Spring 2021 Semester
 CITATIONS FOR CODE AND IMAGES:
@@ -30,7 +31,7 @@ CITATIONS FOR CODE AND IMAGES:
             </form>    
     </div>
 <?php
-session_start();
+
 include_once("../backend/db.php");
 
 $DB_link = new DB_Link();

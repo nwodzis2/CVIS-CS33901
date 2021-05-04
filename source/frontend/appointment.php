@@ -121,7 +121,7 @@ if(isset($_POST['day'])){
 }
 $appointmentArray = [];
   
-  $datetime = DateTime::createFromFormat('G:i', "8:00");
+  $datetime = DateTime::createFromFormat('g:i', "8:00");
   for($i = 0; $i < 60; $i++){
           array_push($appointmentArray, $datetime->format('G:i'));
       $datetime->modify('+10 minutes');
@@ -152,11 +152,26 @@ document.getElementById('my-calendar').addEventListener('calendar-select', (ev) 
   form1.append("day", myDate.substring(8,9));
   form1.append("month", myDate.substring(5,6));
   form1.append("campus", campus);*/
-  var data_ = { "day": formString.substring(8,10), "month": formString.substring(5,7), "campus": campus_ , "insurance": insurance_};
+  var somedata;
+  var somedataday;
+  if(formString.substring(5,7).charAt(0) == "0"){
+    somedata = formString.substring(6,7);
+  }
+  else{
+    somedata = formString.substring(5,7);
+  }
+  if(formString.substring(8,10).charAt(0) == "0"){
+    somedataday = formString.substring(9,10);
+  }
+  else{
+    somedataday = formString.substring(8,10);
+  }
+  var data_ = { "day": somedataday, "month": somedata, "campus": campus_ , "insurance": insurance_};
+
   var data_2 = "day=" + formString.substring(8,10) + "&month=" + formString.substring(5,7) + "&campus=" + campus_ + "&insurance=" + insurance_;
   $.ajax({
         method: "POST",
-        data: 'day=' + formString.substring(8,10) + '&month=' + formString.substring(5,7) + '&campus=' + campus_ + '&insurance=' + insurance_,
+        data: data_,
         success: fillDates(),
         error: function(){
                 console.log("error: post unsucessful")
