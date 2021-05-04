@@ -5,7 +5,7 @@
         //mysql username (on phpmyadmin)
         private $username = "root";
         //password for phpmyadmin
-        private $password = "Natewodzi22";
+        private $password = "";
         //this just does this connection
         public function connect($host = "localhost", $db = "cvis"){
             $this->connection = new mysqli($host, $this->username, $this->password, $db);
