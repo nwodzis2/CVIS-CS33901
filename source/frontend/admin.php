@@ -57,6 +57,39 @@ $user = $_SESSION['user'];
     echo "</div>";
 //end active user
 
+include_once("../backend/email.php");
+
+function campuses_that_need_appointments($connection, $day, $month, $campus){
+    $sql = "SELECT * FROM appointments WHERE campus = '$campus' AND day = '$day' AND month = '$month'";
+
+    $stmt = $connection->prepare($sql);
+
+    $stmt->execute();
+
+    $result = $stmt->get_result();
+    
+    if(!$result){
+        echo "query failed";
+    }
+    else{
+        $count = 0;
+        
+        while($row = mysqli_fetch_assoc($result)){
+             $count = $count + 1; 
+        }
+        if($count < 31){
+            $address = "nwodzis2@kent.edu";
+
+            $subject = "Appointments Needed! " . $month . "/" . $day . " at " . $campus;
+            //Text in body
+            $body = "Hello, this is a KSU-HS CVIS automated message. We are reaching out to all un-vaccinated users in our system to let you know we have appointments availabe today!";
+
+            send_email($address,$subject, $body);
+        }     
+    }  
+}
+
+
 ?>
 <html>
 
@@ -119,6 +152,27 @@ $user = $_SESSION['user'];
     complete_appointments_on_day($connection, $m, $d);
     }
     ?>
+<center>
+    <p>Send emails to user-list</p>
+    <form method="post">
+      <label for="day">Day</label>
+      <input type="text" id="day" name="day2">
+      <label for="month">Month</label>
+      <input type="text" id="month" name="month2">
+      <label for="month">campus</label>
+      <input type="text" id="campus" name="campus">
+      <input type="submit" value="send" name="email">
+    </form>
+</center>
+    <?php 
+    if(isset($_POST['email'], $_POST['day2'], $_POST['month2'], $_POST['campus'] )){
+    $da = $_POST['day2'];
+    $mo = $_POST['month2'];
+    $ca = $_POST['campus'];
+    campuses_that_need_appointments($connection, $da, $mo, $ca);
+    }
+    ?>
+
 
 <style>
 table, th, td {
@@ -174,6 +228,8 @@ th, td {
       </tr>
 </table>
 </center>
+
+
       
   </body>
 </html>
