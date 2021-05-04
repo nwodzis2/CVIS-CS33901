@@ -205,7 +205,7 @@ class Campus{
             else{
                 while($row = mysqli_fetch_assoc($result)){
                     $theEmail = $row['user_email'];
-                    $sql = "SELECT * FROM PatientDetails WHERE campus = '$theEmail'";
+                    $sql = "SELECT * FROM Users WHERE email = '$theEmail'";
                     $stmt = $this->connection->prepare($sql);
                     $stmt->execute();
                     $result = $stmt->get_result();
@@ -237,7 +237,7 @@ class Campus{
             else{
                 while($row = mysqli_fetch_assoc($result)){
                     
-                    $this->update_doses(-1);
+                    $this->decrement_doses();
                 }
             }
         }
@@ -269,10 +269,17 @@ class Campus{
             $stmt->execute();
         
             $result = $stmt->get_result();
-            if(!$result){
-                echo "query failed";
-            }
         } //idk somehow answers the request function
+        public function decrement_doses(){
+            $this->c_doses_on_hand = $this->c_doses_on_hand - 1;
+            $sql = "UPDATE campus SET doses_on_hand = (doses_on_hand - 1) WHERE campus_name = '$this->c_name'";
+        
+            $stmt = $this->connection->prepare($sql);
+        
+            $stmt->execute();
+        
+            $result = $stmt->get_result();
+        }
         public function get_vaccine_type($campus){
             return 1;
         } //returns the vaccine type being given at a campus
@@ -288,9 +295,6 @@ class Campus{
             $stmt->execute();
 
             $result = $stmt->get_result();
-            if(!$result){
-                echo "query failed";
-            }
         } //These 3 just do as expected on the db column "revenue" under each campus.
         public function decrease_revenue(){
             $this->c_revenue = $this->c_revenue - 20;
