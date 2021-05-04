@@ -287,15 +287,7 @@ function getGraph(){
       </div>
       <br>
       <div class="" id="payment-totals">
-        <p id="total" class="totals-pay">total</p>
-        <p id="kent" class="totals-pay">kent</p>
-        <p id="stark" class="totals-pay">stark</p>
-        <p id="ashtabula" class="totals-pay">ashtabula</p>
-        <p id="eastliverpool" class="totals-pay">eastliverpool</p>
-        <p id="salem" class="totals-pay">salem</p>
-        <p id="geauga" class="totals-pay">geauga</p>
-        <p id="trumbull" class="totals-pay">trumbull</p>
-        <p id="tuscarawas" class="totals-pay">tuscarawas</p>
+        
       </div>
     </main>
     <?php
