@@ -1,5 +1,7 @@
 <?php
+//Created by nathan wodzisz spring 2021
 include_once("../backend/db.php");
+//abstract class
 class graph{
     protected $thearray;
     protected $jsonString;
@@ -17,15 +19,17 @@ class graph{
         //virtual
     }
 }
+//concrete class
 class paymentGraph extends graph{
     //will get constructor from graph
     public function get_total_data(){
-        
+        //unused based on time
     }
     public function get_campus_data($campus){
-        
+        //unused based on time
     }
 }
+//concrete class
 class vaccineGraph extends graph{
     //will get constructor from graph
     public function get_total_data(){

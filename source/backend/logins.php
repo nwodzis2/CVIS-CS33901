@@ -1,5 +1,6 @@
 <?php
 //Created by Jaden Kandel Spring 2021 Semester
+//Sessions added by Nathan Wodzisz
 include_once("../backend/db.php");
 $DB_link = new DB_Link();
 $connection = $DB_link->connect("localhost", "cvis");
@@ -28,8 +29,8 @@ function check_if_correct_credentials($connection, $email, $password){
             else{
                 $_SESSION['authenticated'] = true;
                 $_SESSION['email'] = $email;
-                $_SESSION['first_name'] = "first";
-                $_SESSION['last_name'] = "last";
+                $_SESSION['first_name'] = "first"; //unused
+                $_SESSION['last_name'] = "last"; //unused
                 $_SESSION['user'] = explode('@', $email)[0];
                 echo "success";
                 header("location: ../frontend/index.php");

@@ -1,4 +1,6 @@
 <?php 
+//Created by Nathan Wodzisz spring 2021 for software engineering
+//used to reshedule an appointment
       session_start();
       if(!$_SESSION['authenticated']){
         header("location: ./login.php");

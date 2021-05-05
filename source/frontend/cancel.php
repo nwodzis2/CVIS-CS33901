@@ -1,4 +1,7 @@
 <?php 
+
+//page created by Nathan Wodzisz Spring 2021 for software engineering
+//used to cancel an appointment
       session_start();
       if(!$_SESSION['authenticated']){
         header("location: ./login.php");

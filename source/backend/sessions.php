@@ -1,4 +1,5 @@
 <?php
+//UNUSED BUT WANT TO KEEP FOR FUTURE USE
 //Created by Nathan Wodzisz on April 27th 2021
 include_once("../backend/db.php");
 /*

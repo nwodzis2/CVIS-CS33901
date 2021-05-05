@@ -1,6 +1,7 @@
 <?php
 
 //Made by Jaden Kandel Spring Semester 2021 for Software Engineering
+//Heavily edited and added to by Nathan Wodzisz Spring Semester 2021 for Software Engineering
     include_once("../backend/db.php");
     $DB_link = new DB_Link();
     $connection = $DB_link->connect("localhost", "cvis");

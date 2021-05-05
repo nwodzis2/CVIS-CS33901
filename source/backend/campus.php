@@ -1,6 +1,8 @@
 
 <?php
 //Created by Nathan Wodzisz on April 27th 2021
+//You would initialize a campus by something like as follows: $var = Campus::with_name("stark"); or Campus::with_id("1");
+//If new campus, you would initialize as you normally would and call create_campus()
 
 include_once("../backend/db.php");
 

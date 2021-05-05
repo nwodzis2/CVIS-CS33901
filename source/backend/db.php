@@ -1,4 +1,6 @@
 <?php
+//created by Jaden spring 2021 for software engineering
+//predefined parameters added by nathan wodzisz incase ommit, keeps it simple
     class DB_Link {
         //used for our connect value
         private $connection;

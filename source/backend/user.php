@@ -105,6 +105,7 @@
         }
    
     }
+    //Quick fix by Nathan Wodzisz, would not do this way if other way was working
     function logOut(){
         $_SESSION['authenticated'] = false;
     }

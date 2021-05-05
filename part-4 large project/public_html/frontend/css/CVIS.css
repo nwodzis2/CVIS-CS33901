@@ -1,0 +1,275 @@
+
+
+
+#header-main{
+    z-index: 10000;
+    background-color: #053B74;
+    height: 120px;
+    border-bottom: 5px solid #EDAA28;
+    display: flex;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+}
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&display=swap');
+#nav-main{
+    width: 100%;
+    color: white;
+    align-self: flex-end;
+    font-size: 18px;
+    display: block;
+    font-family: "Roboto Slab", Georgia;
+}
+#nav-main > ol{
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    width: 100%;
+}
+#nav-main > ol > li{
+    display: inline;
+    padding: 0px 20px 0px 20px;
+}
+#nav-main > ol > li > a{
+    color: white;
+}
+#nav-main > ol > li > a:hover{
+    color: white;
+    text-decoration: underline;
+    cursor: pointer;
+}
+#kent-logo-nav{
+    display: block;
+    object-fit: contain;
+    height: 95px;
+    padding: 20px;
+    position:absolute;
+}
+#ksu-hs-logo-nav{
+    height: 55px;
+}
+#ksu-hs-logo-nav-span{
+    width: 100%;
+    position: absolute;
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+}
+#fa-sign-out-alt-span{
+    width: 100%;
+    position: absolute;
+    display: block;
+    text-align: right;
+}
+#fa-sign-out-alt-span > a > i{
+    margin: 20px;
+    color: white;
+    font-size: 20px;
+}
+#fa-bar-span{
+    display: none;
+    
+}
+#mission-statement{
+    width: 40%;
+}
+/*****************Mobile*********************/
+@media screen and (max-width: 600px) {
+    #kent-logo-nav{
+        display: none;
+    }
+    #fa-sign-out-alt-span{
+        
+        width: 100%;
+        text-align: left;
+        display: block;
+        top: 10px;
+        left 20px;
+    }
+    #fa-sign-out-alt-span:before{
+        content: " ";
+         white-space: pre;
+        width: 100%;
+        text-align: left;
+        display: block;
+        top: 10px;
+        left 20px;
+    }
+    #fa-bar-span{
+        width: 100%;
+        display: inline-block;
+        position: absolute;
+        text-align: right;
+        padding: 20px;
+        z-index: 100000;
+    }
+    #fa-bar-span > a{
+        color: white;
+        font-size: 20px;
+    }
+    #header-main{
+        height: 90px;
+    }
+    #nav-main{
+        text-align: right;
+        display: none;
+        width: 50vw;
+        height: calc(100vh - 90px);
+        color: #053B74 ;
+        font-family: "Roboto Slab", Georgia;
+        font-size: 18px;
+        position: absolute;
+        top: 90px;
+        right: 0px;
+        background-color: rgba(5, 49, 95, 0.9);
+        border-left: 5px solid #EDAA28;
+    }
+    #nav-main > ol{
+        width: 100vw;
+        height: 100vh;
+        display: block;
+        list-style: none;
+        width: 100%;
+    }
+    #nav-main > ol > li{
+        color: #053B74;
+        display: flex;
+        padding: 20px;
+        align-items: center;
+    }
+    #nav-main > ol > li:before{
+        margin-left: -20px;
+        display: block;
+        content: "____";
+        width: 150%;
+        height: 30px;
+        color: white;
+    }
+    #mission-statement{
+        width: 80%;
+    }
+}
+/*****************Desktop*********************/
+@media screen and (min-width: 600px) {
+    
+    
+}
+.switcher {
+	display: flex;
+	align-items: center;
+	height: 30px;
+	margin-top: 8px;
+	color: #2196F3;
+}
+
+.switcher-item {
+	cursor: pointer;
+	text-decoration: none;
+	display: inline-block;
+	padding: 6px 8px;
+	font-size: 14px;
+	color: #262b3e;
+	background-color: transparent;
+	margin-right: 8px;
+	border: none;
+	border-radius: 4px;
+	outline: none;
+}
+
+.switcher-item:hover {
+	background-color: #f2f3f5;
+}
+
+.switcher-active-item {
+	text-decoration: none;
+	cursor: default;
+	color: #262b3e;
+}
+
+.switcher-active-item,
+.switcher-active-item:hover {
+	background-color: #e1eff9;
+}
+
+.apt-centered{
+    padding-top: 5%;
+    text-align: center;
+}
+#my-calendar{
+    width: 95%;
+    padding-left: 5%;
+}
+#campus-select-cont{
+    padding-left: 5%;
+}
+#time-select-form{
+    margin-right: 20px;
+}
+#col2{
+    z-index: 1000001;
+    color: #EDAA28;
+    padding-top: 10%;
+    text-align: center;
+    position: absolute;
+    top:25vh;
+    left: 25vw;
+    height: 50vh;
+    width:  50vw;
+}
+#col2 input{
+    background-color: #EDAA28;
+    color: white;
+    width: 25%;
+    border-style: none;
+}
+#col2 input:hover{
+    color: #053B74;
+}
+#col2 i{
+    color:#053B74;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10000000;
+    font-size: 20px;
+}
+#col2 i:hover{
+    color:#EDAA28;
+    font-size: 30px;
+}
+.col2{
+    color: #EDAA28;
+    background-color: white;
+    border: 5px solid #EDAA28;
+}
+.shadow{
+    z-index: 1000000;
+    top: 0px;
+    left: 0px;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+#campus_vac_chart{
+    margin-left: 20px;
+}
+#vaccine-counts{
+    text-align: center;
+
+}
+#vaccine-counts > p{
+    display: inline-block;
+    font-size: 20px;
+    color: #053B74;
+    padding-right: 20px;
+}
+.totals-pay{
+    display: inline-block;
+    color:#EDAA28;
+    background-color: #053B74;
+    border-radius: 100%;
+    padding: 20px;
+}

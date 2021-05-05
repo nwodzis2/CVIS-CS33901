@@ -1,5 +1,4 @@
 <?php
-    //cause im too lazy to fix my errors :)
     error_reporting(0);
     //include the files from the backend that we are using 
     include_once("../backend/db.php");

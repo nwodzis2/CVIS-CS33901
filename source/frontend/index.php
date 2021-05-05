@@ -1,4 +1,7 @@
-<?php session_start();
+<?php 
+//Page Created by Nathan Wodzisz Spring 2021
+//this is our dashboard page
+    session_start();
       if(!$_SESSION['authenticated']){
         header("location: ./login.php");
       }

@@ -1,5 +1,6 @@
 <?php
 //Created by Jaden Kandel Spring 2021 Semester
+//Sessions added by Nathan Wodzisz
 include_once("../backend/db.php");
 
 $DB_link = new DB_Link();
@@ -64,6 +65,11 @@ function create_new_user($connection, $email, $password, $pass_check){
                 $stmt->execute();
 
                 $result = $stmt->get_result();
+                $_SESSION['authenticated'] = true;
+                $_SESSION['email'] = $email;
+                $_SESSION['first_name'] = "first"; //unused
+                $_SESSION['last_name'] = "last"; //unused
+                $_SESSION['user'] = explode('@', $email)[0];
                 echo '<script>
                 alert("Your account has been registered!");
                 window.location.href="../frontend/index.php";

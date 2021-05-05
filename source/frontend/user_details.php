@@ -1,5 +1,6 @@
 <?php 
 //Created by Jaden Kandel Spring Semester 2021
+//Not functioning properly
 session_start();
     if(!$_SESSION['authenticated']){
         header("location: ./login.php");

@@ -1,4 +1,5 @@
 <?php
+//I believe unused?
 include_once("../backend/appointment.php");
 include_once("../backend/db.php");
 
