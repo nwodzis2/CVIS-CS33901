@@ -1,2 +1,2 @@
-# CVIS-CS33901
+# CVIS
  Software Engineering Large Project. The Coronavirus Vaccination Integrated System (CVIS) will be used to help monitor the vacinations through kent state. Our goal is to design a system that effectivly monitors the vacintes, create visualizations, schedule appointment, and more...
